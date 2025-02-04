@@ -19,23 +19,12 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/notificacao.css">
     <style>
-        main {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            height: 100vh;
-        }
-
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: rgba(92, 122, 100, 0.61);
-            font-family: Arial, sans-serif;
-            margin: 0;
+
         }
 
         .container {
@@ -43,14 +32,14 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 40%;
-            max-width: 400px;
+            width: 100%;
+            max-width: 25%;
+            margin-top: 50px;
             text-align: center;
         }
 
         .container h2 {
             color: #2e7d32;
-            margin-bottom: 20px;
         }
 
         .form-group {
@@ -65,25 +54,27 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
         }
 
         .form-group input {
-            width: 100%;
+            width: 95%;
             padding: 10px;
             border: 1px solid #66bb6a;
             border-radius: 5px;
             font-size: 1rem;
         }
 
-        .check-admin {
+        .form-group .check-admin {
             display: flex;
-            align-items: center;
-            gap: 5px;
+            align-items: center;    
             margin-top: 10px;
         }
 
-        .check-admin label {
+        .form-group .check-admin label {
             font-weight: normal;
             color: #2e7d32;
             cursor: pointer;
+            margin-left: 0;
+            margin-right: 90%;
         }
+
 
         .btn-submit {
             width: 100%;
@@ -99,12 +90,6 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
 
         .btn-submit:hover {
             background-color: #1b5e20;
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                width: 90%;
-            }
         }
     </style>
 

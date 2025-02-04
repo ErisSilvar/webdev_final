@@ -7,25 +7,27 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['senha'])) {
     $admin = isset($_POST['admin']) ? 1 : 0;
 
     require_once '../class/rb.php';
-
     include_once '../inc/conexaobd.inc.php';
 
     try {
-        $usuario = R::dispense('usuario');
+        $usuarioExistente = R::findOne('usuario', 'email = ?', [$email]);
 
-        $usuario->nome = $nome;
-        $usuario->email = $email;
-        $usuario->senha = $senha;
-        $usuario->admin = $admin;
-        date_default_timezone_set('America/Fortaleza');
-        $usuario->dataHora = date("Y-m-d H:i:s");
+        if ($usuarioExistente) {
+            $_SESSION['mensagem'] = ['texto' => 'Este email já está cadastrado no sistema.', 'tipo' => 'erro'];
+        } else {
+            $usuario = R::dispense('usuario');
+            $usuario->nome = $nome;
+            $usuario->email = $email;
+            $usuario->senha = $senha;
+            $usuario->admin = $admin;
+            date_default_timezone_set('America/Fortaleza');
+            $usuario->dataHora = date("Y-m-d H:i:s");
 
+            $id = R::store($usuario);
+            R::close();
 
-        $id = R::store($usuario);
-
-        R::close();
-
-        $_SESSION['mensagem'] = ['texto' => 'Usuário cadastrado com sucesso!', 'tipo' => 'sucesso'];
+            $_SESSION['mensagem'] = ['texto' => 'Usuário cadastrado com sucesso!', 'tipo' => 'sucesso'];
+        }
     } catch (Exception $e) {
         $_SESSION['mensagem'] = ['texto' => 'Erro ao cadastrar usuário.', 'tipo' => 'erro'];
     }
@@ -35,4 +37,3 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['senha'])) {
 
 header('Location: ../cadastraruser.php');
 exit();
-?>
