@@ -21,10 +21,10 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
     <style>
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-
         }
 
         .container {
@@ -63,7 +63,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
 
         .form-group .check-admin {
             display: flex;
-            align-items: center;    
+            align-items: center;
             margin-top: 10px;
         }
 
