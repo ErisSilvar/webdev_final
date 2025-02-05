@@ -9,7 +9,11 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
     exit();
 }
 
-$usuarios = R::find('usuario', 'id != ? AND admin = 0', [1]); 
+if ($_SESSION['email'] === 'root@admin.com') {
+    $usuarios = R::find('usuario', 'id != ?', [1]);
+} else {
+    $usuarios = R::find('usuario', 'id != ? AND admin = 0', [1]);
+}
 
 ?>
 <!DOCTYPE html>
@@ -51,7 +55,8 @@ $usuarios = R::find('usuario', 'id != ? AND admin = 0', [1]);
             margin-top: 20px;
         }
 
-        table th, table td {
+        table th,
+        table td {
             padding: 12px;
             border: 1px solid #ddd;
             text-align: left;
@@ -75,22 +80,6 @@ $usuarios = R::find('usuario', 'id != ? AND admin = 0', [1]);
         .btn-excluir:hover {
             background-color: #c62828;
         }
-
-        .notificacao {
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-        }
-
-        .sucesso {
-            background-color: #81c784;
-            color: #2e7d32;
-        }
-
-        .erro {
-            background-color: #e57373;
-            color: #d32f2f;
-        }
     </style>
 </head>
 
@@ -100,7 +89,6 @@ $usuarios = R::find('usuario', 'id != ? AND admin = 0', [1]);
     </header>
 
     <?php
-    // Exibe a mensagem de notificação, caso exista
     if (isset($_SESSION['mensagem'])) {
         $mensagem = $_SESSION['mensagem'];
         echo "<div class='notificacao {$mensagem['tipo']}'>{$mensagem['texto']}</div>";
@@ -118,7 +106,7 @@ $usuarios = R::find('usuario', 'id != ? AND admin = 0', [1]);
                         <th>Nome</th>
                         <th>Email</th>
                         <th>Tipo</th>
-                        <th>Ações</th>
+                        <th>Ação</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -129,7 +117,6 @@ $usuarios = R::find('usuario', 'id != ? AND admin = 0', [1]);
                             <td><?php echo $usuario->email; ?></td>
                             <td><?php echo $usuario->admin == 1 ? 'Administrador' : 'Usuário Comum'; ?></td>
                             <td>
-                                <!-- Botão de exclusão para cada usuário -->
                                 <button type="submit" name="excluir_id" value="<?php echo $usuario->id; ?>" class="btn-excluir">Excluir</button>
                             </td>
                         </tr>
