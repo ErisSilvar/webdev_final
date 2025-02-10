@@ -2,6 +2,7 @@
 require_once 'class/rb.php';
 require_once './inc/conexaobd.inc.php';
 include_once './inc/entradausuario.inc.php';
+require_once './inc/testebd.inc.php';
 
 setlocale(LC_TIME, 'pt_BR.utf8', 'pt_BR', 'portuguese');
 
@@ -37,8 +38,8 @@ if ($dia_selecionado) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendário de Reservas</title>
-    <link rel="stylesheet" href="./estilo/style.css">
-    <link rel="stylesheet" href="./estilo/notificacao.css">
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/notificacao.css">
     <style>
         table {
             width: 100%;
@@ -52,17 +53,6 @@ if ($dia_selecionado) {
             text-align: center;
             padding: 10px;
             border: 1px solid #ccc;
-        }
-        a {
-            display: block;
-            padding: 10px;
-            border-radius: 5px;
-            color: #2e7d32;
-            text-decoration: none;
-            background-color: #e0f7fa;
-        }
-        a:hover {
-            background-color: #81d4fa;
         }
     </style>
 </head>
