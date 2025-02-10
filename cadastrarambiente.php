@@ -16,6 +16,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar ambiente</title>
     <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/notificacao.css">
   
     <style>
         body {
@@ -61,14 +62,12 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
             font-size: 1rem;
         }
 
-        .image-preview {
-            margin-top: 15px;
-            text-align: center;
-        }
-
-        .image-preview img {
-            max-width: 100%;
-            border-radius: 10px;
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #66bb6a;
+            border-radius: 5px;
+            font-size: 1rem;
         }
 
         .btn-submit {
@@ -124,6 +123,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
                     <input type="text" id="descricao" name="descricao" required>
                 </div>
                 <div class="form-group">
+                    <label for="arquivo">Imagem do ambiente: [Apenas formatos JPG, JPEG, PNG e GIF]</label>
                     <input type="file" id="arquivo" name="arquivo">
 
                 </div>
@@ -133,7 +133,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
 
     </main>
     <footer>
-
+        <?php include_once('./inc/rodape.inc.php') ?>
     </footer>
 
 </body>

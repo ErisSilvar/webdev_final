@@ -111,7 +111,7 @@ $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
                                 alt="Imagem da Sala">
                             <h3><?= htmlspecialchars($sala->nome) ?></h3>
                             <p><?= htmlspecialchars($sala->descricao) ?></p>
-                            <a href="calendario.php?usuario_id=<?= $usuario_id ?>&ambiente=<?= urlencode($sala->nome) ?>">
+                            <a href="reservar.php?usuario_id=<?= $usuario_id ?>&ambiente=<?= urlencode($sala->id) ?>">
                                 <button class="reservar_btn">Reservar</button>
                             </a>
                         </div>
@@ -130,7 +130,7 @@ $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
                                 alt="Imagem do Laboratório">
                             <h3><?= htmlspecialchars($laboratorio->nome) ?></h3>
                             <p><?= htmlspecialchars($laboratorio->descricao) ?></p>
-                            <a href="calendario.php?ambiente=<?= urlencode($laboratorio->nome) ?>">
+                            <a href="reservar.php?usuario_id=<?= $usuario_id ?>&ambiente=<?= urlencode($laboratorio->id) ?>">
                                 <button class="reservar_btn">Reservar</button>
                             </a>
                         </div>
