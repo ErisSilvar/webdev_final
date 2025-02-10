@@ -1,1 +1,1 @@
-<p>Copyright © 2025 by Eris, Hianca, Cecília e Matos</p>
+<p>Copyright © 2025 by Eris, Hianca, Cecília, Matos e Eduarda</p>
