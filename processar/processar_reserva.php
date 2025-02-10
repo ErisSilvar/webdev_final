@@ -41,6 +41,7 @@ if (isset($_POST['data_reserva'], $_POST['horario'], $_POST['ambiente_id'])) {
     try {
         R::store($reserva); 
         echo "Reserva realizada com sucesso!";
+        header('Location: ../minhasreservas.php');
     } catch (Exception $e) {
         die("Erro ao realizar a reserva: " . $e->getMessage());
     }
