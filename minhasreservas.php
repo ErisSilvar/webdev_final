@@ -99,13 +99,16 @@ $reservas = R::find('reservas', 'id != ?', [1]);
             <h1>Salas</h1>
             <?php if (count($reservas) > 0): ?>
                 <div class="card-container">
-                    <?php foreach ($reservas as $reserva): ?>
+                    <?php foreach ($reservas as $reserva):
+                    $ambiente = R::load('ambiente', $reserva->ambiente_id);
+                    ?>
                         <div class="card">
-                            <img src="./processar/uploads/ambientes/<?= htmlspecialchars($reserva->ambiente_id['nome']) ?>"
+                            <img src="./processar/uploads/ambientes/<?= htmlspecialchars($ambiente->imagem) ?>"
                                 alt="Imagem da Sala">
-                            <h3><?= htmlspecialchars($sala->nome) ?></h3>
-                            <p><?= htmlspecialchars($sala->descricao) ?></p>
-                            <a href="reservar.php?usuario_id=<?= $usuario_id ?>&ambiente=<?= urlencode($sala->id) ?>">
+                            <h3><?= htmlspecialchars($ambiente->nome) ?></h3>
+                            <p><?= htmlspecialchars($reserva->data_reserva) ?></p>
+                            <p><?= htmlspecialchars($reserva->horario) ?></p>
+                            <a href="cancelar_reservar.php?usuario_id=<?= $usuario_id ?>&ambiente=<?= urlencode($sala->id) ?>">
                                 <button class="reservar_btn">Reservar</button>
                             </a>
                         </div>
