@@ -119,7 +119,7 @@ require_once './inc/testebd.inc.php';
         <div class="perfil">
             <p>Hianca Rafaella</p>
             <img src="imgs/hianca.jpg" alt="Imagem de Hianca" class="imagem"></img>
-            <p>Email de contato: </p>
+            <p>Email de contato: hrgo@aluno.ifnmg.edu.br </p>
         </div>
 
         <div class="perfil">
