@@ -25,6 +25,10 @@ require_once './inc/testebd.inc.php';
             padding: 20px;
             text-align: center;
             color: #aff;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
         }
 
         h1 {
@@ -37,6 +41,7 @@ require_once './inc/testebd.inc.php';
             padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
+            padding-bottom: 100px;
         }
 
         h2 {
@@ -46,6 +51,10 @@ require_once './inc/testebd.inc.php';
             margin-bottom: 10px;
         }
 
+        .p {
+            text-indent: 2em;
+        }
+
         .texto {
             text-align: center;
             font-size: 1.5em;
@@ -53,16 +62,21 @@ require_once './inc/testebd.inc.php';
             margin-bottom: 30px;
         }
 
+        .perfil-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
         .perfil {
-            display: inline-block;
             text-align: center;
-            margin: 40px 1%;
-            width: 30%;
-            background-color:rgba(15, 80, 9, 0.33);
+            width: calc(33.33% - 20px);
+            background-color: rgba(15, 80, 9, 0.33);
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgp(0, 0, 0, 0.1);
-
+            box-shadow: 0 4px 8px rgb(0, 0, 0, 0.1);
+            min-width: 250px;
         }
 
         .perfil p {
@@ -73,10 +87,11 @@ require_once './inc/testebd.inc.php';
         .imagem {
             width: 180px;
             height: 180px;
-            border: 50%;
             object-fit: cover;
             margin-bottom: 15px;
-            border: 4px solid rgb(37, 102, 29)
+            border: 4px solid rgb(37, 102, 29);
+            position: relative;
+            z-index: 1;
         }
 
         footer {
@@ -85,6 +100,8 @@ require_once './inc/testebd.inc.php';
             text-align: center;
             color: #fff;
             margin-top: 40px;
+            position: fixed;
+            z-index: 1000;
         }
     </style>
 
@@ -98,38 +115,41 @@ require_once './inc/testebd.inc.php';
     <main>
         <h1 class="texto">Sobre nós</h1>
 
-        <div class="perfil">
-            <p>Ana Cecília Silva </p>
-            <img src="imgs/naceci.jpg" alt="Imagem de Ana" class="imagem"></img>
-            <p>Email de contato: cceci0170@gmail.com</p>
-        </div>
+        <div class="perfil-container">
+            <div class="perfil">
+                <p>Ana Cecília Silva </p>
+                <img src="imgs/naceci.jpg" alt="Imagem de Ana" class="imagem">
+                <p>Email de contato: cceci0170@gmail.com</p>
+            </div>
 
-        <div class="perfil">
-            <p>Ana Julia Matos</p>
-            <img src="imgs/naju.jpg" alt="Imagem de Julia" class="imagem"></img>
-            <p>Email de cotato: ajms4@aluno.ifnmg.edu.br</p>
-        </div>
+            <div class="perfil">
+                <p>Ana Julia Matos</p>
+                <img src="imgs/naju.jpg" alt="Imagem de Julia" class="imagem">
+                <p>Email de contato: ajms4@aluno.ifnmg.edu.br</p>
+            </div>
 
-        <div class="perfil">
-            <p>Eris Silva</p>
-            <img src="imgs/eris.jpg" alt="Imagem de Eris" class="imagem"></img>
-            <p>Email de contato: eers@aluno.ifnmg.edu.br</p>
-        </div>
+            <div class="perfil">
+                <p>Eris Silva</p>
+                <img src="imgs/eris.jpg" alt="Imagem de Eris" class="imagem">
+                <p>Email de contato: eers@aluno.ifnmg.edu.br</p>
+            </div>
 
-        <div class="perfil">
-            <p>Hianca Rafaella</p>
-            <img src="imgs/hianca.jpg" alt="Imagem de Hianca" class="imagem"></img>
-            <p>Email de contato: hrgo@aluno.ifnmg.edu.br </p>
-        </div>
+            <div class="perfil">
+                <p>Hianca Rafaella</p>
+                <img src="imgs/hianca.jpg" alt="Imagem de Hianca" class="imagem">
+                <p>Email de contato: hrgo@aluno.ifnmg.edu.br </p>
+            </div>
 
-        <div class="perfil">
-            <p>Maria Eduarda Carvalho</p>
-            <img src="imgs/duda.jpg" alt="Imagem de Maria" class="imagem"></img>
-            <p>Email de Contato: mecss@aluno.ifnmg.edu.br</p>
+            <div class="perfil">
+                <p>Maria Eduarda Carvalho</p>
+                <img src="imgs/duda.jpg" alt="Imagem de Maria" class="imagem">
+                <p>Email de Contato: mecss@aluno.ifnmg.edu.br</p>
+            </div>
         </div>
 
         <h2>Sobre nós</h2>
-        <p>Somos uma equipe de alunos do Instituto Federal - Campus Montes Claros, aprendendo a desenvolver sites, na matéria de Desenvolvimento Web, cursando o 3° ano de Informática integrado ao Ensino Médio.</p>
+        <p class="p">Somos uma equipe de alunos do Instituto Federal - Campus Montes Claros, aprendendo a desenvolver sites, na matéria de Desenvolvimento Web, cursando o 3° ano de Informática integrado ao Ensino Médio.</p>
+
     </main>
 
     <footer>
