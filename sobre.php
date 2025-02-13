@@ -14,21 +14,17 @@ require_once './inc/testebd.inc.php';
     <link rel="stylesheet" href="./style/style.css">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .container {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 50px auto;
+            text-align: center;
         }
 
-        header {
-            background-color: rgb(37, 102, 29);
-            padding: 20px;
-            text-align: center;
-            color: #aff;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
+        main {
+            margin-top: 7%;
         }
 
         h1 {
@@ -37,29 +33,11 @@ require_once './inc/testebd.inc.php';
             margin: 20px 0;
         }
 
-        main {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-bottom: 100px;
-        }
-
-        h2 {
-            font-size: 1.8em;
-            color: rgb(37, 102, 29);
-            margin-top: 40px;
-            margin-bottom: 10px;
-        }
-
-        .p {
-            text-indent: 2em;
-        }
-
         .texto {
-            text-align: center;
-            font-size: 1.5em;
+            font-size: 1.3em;
             color: rgb(37, 102, 29);
             margin-bottom: 30px;
+            text-align: justify;
         }
 
         .perfil-container {
@@ -67,6 +45,7 @@ require_once './inc/testebd.inc.php';
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
+            margin-top: 30px;
         }
 
         .perfil {
@@ -91,17 +70,6 @@ require_once './inc/testebd.inc.php';
             margin-bottom: 15px;
             border: 4px solid rgb(37, 102, 29);
             position: relative;
-            z-index: 1;
-        }
-
-        footer {
-            background-color: rgb(37, 102, 29);
-            padding: 20px;
-            text-align: center;
-            color: #fff;
-            margin-top: 40px;
-            position: fixed;
-            z-index: 1000;
         }
     </style>
 
@@ -113,43 +81,48 @@ require_once './inc/testebd.inc.php';
     </header>
 
     <main>
-        <h1 class="texto">Sobre nós</h1>
-
-        <div class="perfil-container">
-            <div class="perfil">
-                <p>Ana Cecília Silva </p>
-                <img src="imgs/naceci.jpg" alt="Imagem de Ana" class="imagem">
-                <p>Email de contato: cceci0170@gmail.com</p>
-            </div>
-
-            <div class="perfil">
-                <p>Ana Julia Matos</p>
-                <img src="imgs/naju.jpg" alt="Imagem de Julia" class="imagem">
-                <p>Email de contato: ajms4@aluno.ifnmg.edu.br</p>
-            </div>
-
-            <div class="perfil">
-                <p>Eris Silva</p>
-                <img src="imgs/eris.jpg" alt="Imagem de Eris" class="imagem">
-                <p>Email de contato: eers@aluno.ifnmg.edu.br</p>
-            </div>
-
-            <div class="perfil">
-                <p>Hianca Rafaella</p>
-                <img src="imgs/hianca.jpg" alt="Imagem de Hianca" class="imagem">
-                <p>Email de contato: hrgo@aluno.ifnmg.edu.br </p>
-            </div>
-
-            <div class="perfil">
-                <p>Maria Eduarda Carvalho</p>
-                <img src="imgs/duda.jpg" alt="Imagem de Maria" class="imagem">
-                <p>Email de Contato: mecss@aluno.ifnmg.edu.br</p>
+        <div class="container">
+            <h1 class="texto">Sobre a Equipe</h1>
+            <p class="texto">
+                Somos alunos do curso Técnico em Informática do IFNMG - Campus Montes Claros, e nosso objetivo é garantir o pleno funcionamento dos projetos que desenvolvemos ao longo de nossa trajetória acadêmica.
+            </p>
+            <p class="texto">
+                Este é o nosso último trabalho na disciplina de Desenvolvimento Web, realizado no terceiro ano do curso, e marca nossa formatura em 2025. Ao longo do curso, aprendemos e aplicamos os conhecimentos adquiridos para criar soluções inovadoras na área da tecnologia.
+            </p>
+            <p class="texto">
+                Este projeto reflete nosso empenho, dedicação e evolução contínua no campo da programação e desenvolvimento web. Ele é fruto do trabalho coletivo e da troca de experiências durante o curso, com o objetivo de criar uma solução que seja útil para muitos.
+            </p>
+            <p class="texto">
+                Agradecemos a todos que nos acompanharam e apoiaram ao longo dessa jornada. Esperamos que este programa atenda às expectativas e contribua positivamente para aqueles que o utilizarem.
+            </p>
+            <div class="perfil-container">
+                <div class="perfil">
+                    <p>Ana Cecília Silva</p>
+                    <img src="imgs/naceci.jpg" alt="Imagem de Ana" class="imagem">
+                    <p>Email de contato: cceci0170@gmail.com</p>
+                </div>
+                <div class="perfil">
+                    <p>Ana Julia Matos</p>
+                    <img src="imgs/naju.jpg" alt="Imagem de Julia" class="imagem">
+                    <p>Email de contato: ajms4@aluno.ifnmg.edu.br</p>
+                </div>
+                <div class="perfil">
+                    <p>Eris Silva</p>
+                    <img src="imgs/eris.jpg" alt="Imagem de Eris" class="imagem">
+                    <p>Email de contato: eers@aluno.ifnmg.edu.br</p>
+                </div>
+                <div class="perfil">
+                    <p>Hianca Rafaella</p>
+                    <img src="imgs/hianca.jpg" alt="Imagem de Hianca" class="imagem">
+                    <p>Email de contato: hrgo@aluno.ifnmg.edu.br</p>
+                </div>
+                <div class="perfil">
+                    <p>Maria Eduarda Carvalho</p>
+                    <img src="imgs/duda.jpg" alt="Imagem de Maria" class="imagem">
+                    <p>Email de contato: mecss@aluno.ifnmg.edu.br</p>
+                </div>
             </div>
         </div>
-
-        <h2>Sobre nós</h2>
-        <p class="p">Somos uma equipe de alunos do Instituto Federal - Campus Montes Claros, aprendendo a desenvolver sites, na matéria de Desenvolvimento Web, cursando o 3° ano de Informática integrado ao Ensino Médio.</p>
-
     </main>
 
     <footer>

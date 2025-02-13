@@ -2,6 +2,7 @@
     <img src="./imgs/if_icone.png" alt="Logo do if" class="logo" width="40" height="40">
     <a href="./index.php">Home</a>
     <a href="./sobre.php">Sobre</a>
+    <a href="./minhasreservas.php">Minhas reservas</a>
 
     <?= $linkAdmin ?>
 

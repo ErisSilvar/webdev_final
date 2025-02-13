@@ -241,7 +241,7 @@ if ($dia_selecionado) {
                             $mensagem = in_array($horario, $horarios_ocupados) ? "<br><small>Já reservado</small>" : "";
                             ?>
                             <label style="display: inline-block; padding: 10px; border: 1px solid #ccc; cursor: pointer;">
-                                <input type="radio" name="horario" value="<?= $horario ?>" <?= $disabled ?>> <?= $horario ?> <?= $mensagem ?>
+                                <input type="checkbox" name="horario" value="<?= $horario ?>" <?= $disabled ?>> <?= $horario ?> <?= $mensagem ?>
                             </label>
                         <?php endforeach; ?>
                     </div>
