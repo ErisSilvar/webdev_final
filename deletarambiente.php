@@ -111,11 +111,10 @@ $ambientes = R::findAll('ambiente');
                             <td><?php echo $ambiente->id; ?></td>
                             <td><?php echo $ambiente->tipo; ?></td>
                             <td><?php echo $ambiente->nome; ?></td>
-                            <td><img src="./processar/uploads/ambientes/<?= htmlspecialchars($sala->imagem) ?>"
-                                alt="Imagem da Sala"></td>
-                            <td><?php echo $ambiente->tipo == 1 ? 'Sala' : 'Laboratorio'; ?></td>
+                            <td><img src="./processar/uploads/ambientes/<?= htmlspecialchars($ambiente->imagem) ?>"
+                                alt="Imagem do Ambiente"></td>
                             <td>
-                                <button type="submit" name="excluir_id" value="<?php echo $usuario->id; ?>" class="btn-excluir">Excluir</button>
+                                <button type="submit" name="excluir_id" value="<?php echo $ambiente->id; ?>" class="btn-excluir">Excluir</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>

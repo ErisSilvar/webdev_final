@@ -6,6 +6,12 @@ require_once './inc/testebd.inc.php';
 
 setlocale(LC_TIME, 'pt_BR.utf8', 'pt_BR', 'portuguese');
 
+
+if (!isset($_SESSION['email']) || $_SESSION['email'] == 'visitante@ifnmg.edu.br') {
+    header("Location: index.php");
+    exit;
+}
+
 $usuario_id = isset($_SESSION['email']) ? $_SESSION['email'] : null;
 $ambiente_id = isset($_GET['ambiente']) ? $_GET['ambiente'] : null;
 $data = isset($_GET['mes']) ? $_GET['mes'] : date('Y-m');
