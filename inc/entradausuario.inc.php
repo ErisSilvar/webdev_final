@@ -35,4 +35,16 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 0) {
     $linkAdmin = '';
 }
 
+if (basename($_SERVER['PHP_SELF']) !== "index.php") {
+    $linkHome = '<a href="index.php">Home</a>';
+} else {
+    $linkHome = '';
+}
+
+if (basename($_SERVER['PHP_SELF']) !== "sobre.php") {
+    $linkSobre = '<a href="sobre.php">Sobre</a>';
+} else {
+    $linkSobre = '';
+}
+
 ?>

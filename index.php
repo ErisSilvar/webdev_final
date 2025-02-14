@@ -1,12 +1,13 @@
 <?php
+include_once './inc/entradausuario.inc.php';
 require_once './class/rb.php';
 require_once './inc/conexaobd.inc.php';
-include_once './inc/entradausuario.inc.php';
 require_once './inc/testebd.inc.php';
 
 $usuario_id = $_SESSION['usuario'];
 $salas = R::findAll('ambiente', 'tipo = ?', ['sala']);
 $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
+
 ?>
 
 <!DOCTYPE html>
@@ -84,7 +85,6 @@ $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
             background-color: #388e3c;
             transform: scale(1.05);
         }
-        
     </style>
 </head>
 
@@ -99,6 +99,15 @@ $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
                 Bem-vindo, <?php echo $_SESSION['nome']; ?>!
             </div>
         <?php endif; ?>
+
+        <?php
+
+        if (isset($_SESSION['msg_visitanteNegado'])) {
+            $mensagem = $_SESSION['msg_visitanteNegado'];
+            echo "<div class='notificacao {$mensagem['tipo']}'>{$mensagem['texto']}</div>";
+            $_SESSION('msg_visitanteNegado'); 
+        }
+        ?>
 
         <div class="container">
             <h1>Reserva de Ambiente</h1>
