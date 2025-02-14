@@ -11,6 +11,22 @@ if (isset($_POST['tipo']) && isset($_POST['nome']) && isset($_POST['descricao'])
     include_once '../inc/conexaobd.inc.php';
 
     try {
+        $ambienteExistente = R::findOne('ambiente', 'nome = ?', [$nome]);
+        if ($ambienteExistente) {
+            $_SESSION['mensagem'] = ['texto' => 'Este ambiente já está cadastrado no sistema.', 'tipo' => 'erro'];
+            header('Location: ../cadastrarambiente.php');
+            exit();
+        }
+    } catch (Exception $e) {
+        $_SESSION['mensagem'] = ['texto' => 'Erro ao verificar ambiente: ' . $e->getMessage(), 'tipo' => 'erro'];
+        header('Location: ../cadastrarambiente.php');
+        exit();
+    }
+
+
+
+
+    try {
         if ($arquivo['error'] !== UPLOAD_ERR_OK) {
             throw new Exception('Erro no upload do arquivo.');
         }
@@ -29,7 +45,7 @@ if (isset($_POST['tipo']) && isset($_POST['nome']) && isset($_POST['descricao'])
         }
 
         $uploadFilePath = $uploadDir . $uniqueName;
- 
+
         if (!move_uploaded_file($arquivo['tmp_name'], $uploadFilePath)) {
             throw new Exception('Erro ao mover o arquivo para o diretório.');
         }
@@ -53,4 +69,3 @@ if (isset($_POST['tipo']) && isset($_POST['nome']) && isset($_POST['descricao'])
 
 header('Location: ../cadastrarambiente.php');
 exit();
-?>
