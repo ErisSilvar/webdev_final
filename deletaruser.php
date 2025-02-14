@@ -39,7 +39,7 @@ if ($_SESSION['email'] === 'root@admin.com') {
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
+            width: 60%;
             max-width: 80%;
             margin-top: 50px;
             text-align: center;
@@ -50,6 +50,7 @@ if ($_SESSION['email'] === 'root@admin.com') {
         }
 
         table {
+            text-align: center;
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
@@ -59,7 +60,7 @@ if ($_SESSION['email'] === 'root@admin.com') {
         table td {
             padding: 12px;
             border: 1px solid #ddd;
-            text-align: left;
+            text-align: center;
         }
 
         table th {

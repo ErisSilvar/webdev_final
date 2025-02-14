@@ -35,7 +35,7 @@ $ambientes = R::findAll('ambiente');
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
+            width: 60%;
             max-width: 80%;
             margin-top: 50px;
             text-align: center;
@@ -46,6 +46,7 @@ $ambientes = R::findAll('ambiente');
         }
 
         table {
+            text-align: center;
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
@@ -55,7 +56,13 @@ $ambientes = R::findAll('ambiente');
         table td {
             padding: 12px;
             border: 1px solid #ddd;
-            text-align: left;
+            text-align: center;
+            width: 20px;
+        }
+
+        table td img {
+            width: 100px;
+            height: auto;
         }
 
         table th {
@@ -112,7 +119,7 @@ $ambientes = R::findAll('ambiente');
                             <td><?php echo $ambiente->tipo; ?></td>
                             <td><?php echo $ambiente->nome; ?></td>
                             <td><img src="./processar/uploads/ambientes/<?= htmlspecialchars($ambiente->imagem) ?>"
-                                alt="Imagem do Ambiente"></td>
+                                    alt="Imagem do Ambiente"></td>
                             <td>
                                 <button type="submit" name="excluir_id" value="<?php echo $ambiente->id; ?>" class="btn-excluir">Excluir</button>
                             </td>
