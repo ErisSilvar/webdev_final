@@ -3,12 +3,8 @@ require_once './class/rb.php';
 require_once './inc/conexaobd.inc.php';
 include_once './inc/entradausuario.inc.php';
 require_once './inc/testebd.inc.php';
-
-if (isset($_SESSION['email']) && $_SESSION['email'] === "visitante@ifnmg.edu.com") {
-    $_SESSION['msg_visitanteNegado'] = ['texto' => 'Você não tem permissão para acessar esta página.', 'tipo' => 'erro'];
-    header("Location: index.php");
-    exit();
-}
+require_once './inc/verificar_acesso.inc.php';
+?>
 
 ?>
 <!DOCTYPE html>
@@ -31,7 +27,7 @@ if (isset($_SESSION['email']) && $_SESSION['email'] === "visitante@ifnmg.edu.com
         }
 
         main {
-            margin-top: 4.5%;
+            margin-top: 1%;
         }
 
         h1 {

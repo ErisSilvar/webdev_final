@@ -10,7 +10,7 @@ if (!isset($_SESSION['email'])) {
     die("Erro: Usuário não autenticado. Por favor, faça login.");
 }
 
-$usuario_email = $_SESSION['email']; 
+$usuario_email = $_SESSION['email'];
 
 
 if (isset($_POST['data_reserva'], $_POST['horario'], $_POST['ambiente_id'])) {
@@ -36,10 +36,10 @@ if (isset($_POST['data_reserva'], $_POST['horario'], $_POST['ambiente_id'])) {
     $reserva->data_reserva = $data_reserva;
     $reserva->horario = $horario;
     $reserva->ambiente_id = $ambiente_id;
-    $reserva->usuario_email = $usuario_email; 
+    $reserva->usuario_email = $usuario_email;
 
     try {
-        R::store($reserva); 
+        R::store($reserva);
         echo "Reserva realizada com sucesso!";
         header('Location: ../minhasreservas.php');
     } catch (Exception $e) {

@@ -19,23 +19,23 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/notificacao.css">
     <style>
-        body {
+        main {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            text-align: center;
             height: 100vh;
         }
 
         .container {
-            background-color: white;
+            background: white;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 25%;
-            margin-top: 50px;
             text-align: center;
+            max-width: 400px;
+            width: 90%;
         }
 
         .container h2 {
@@ -54,7 +54,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
         }
 
         .form-group input {
-            width: 95%;
+            width: 96%;
             padding: 10px;
             border: 1px solid #66bb6a;
             border-radius: 5px;
@@ -102,37 +102,39 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
         include_once('./inc/cabecalho.inc.php');
         ?>
     </header>
-    <?php
-    if (isset($_SESSION['mensagem'])) {
-        $mensagem = $_SESSION['mensagem'];
-        echo "<div class='notificacao {$mensagem['tipo']}'>{$mensagem['texto']}</div>";
-        unset($_SESSION['mensagem']);
-    }
-    ?>
-    <div class="container">
-        <h2>Cadastro de Usuário</h2>
-        <form action="./processar/processaruser.php" method="POST">
-            <div class="form-group">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" required>
-            </div>
-            <div class="form-group">
-                <div class="check-admin">
-                    <input type="checkbox" id="admin" name="admin" value="1">
-                    <label for="admin">Administrador</label>
+    <main>
+        <?php
+        if (isset($_SESSION['mensagem'])) {
+            $mensagem = $_SESSION['mensagem'];
+            echo "<div class='notificacao {$mensagem['tipo']}'>{$mensagem['texto']}</div>";
+            unset($_SESSION['mensagem']);
+        }
+        ?>
+        <div class="container">
+            <h2>Cadastro de Usuário</h2>
+            <form action="./processar/processaruser.php" method="POST">
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
                 </div>
-            </div>
-            <button type="submit" class="btn-submit">Cadastrar</button>
-        </form>
-    </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" required>
+                </div>
+                <div class="form-group">
+                    <div class="check-admin">
+                        <input type="checkbox" id="admin" name="admin" value="1">
+                        <label for="admin">Administrador</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">Cadastrar</button>
+            </form>
+        </div>
+    </main>
     <footer>
         <?php
         include_once('./inc/rodape.inc.php');

@@ -18,6 +18,8 @@ if (isset($_POST['login'])) {
         $_SESSION['email'] = $usuario->email;
         $_SESSION['admin'] = $usuario->admin;
 
+        $_SESSION['exibir_boas_vindas'] = true;
+
         header("Location: index.php");
         exit();
     } else {
@@ -33,6 +35,8 @@ if (isset($_POST['visitante'])) {
     $_SESSION['nome'] = 'Visitante';
     $_SESSION['email'] = 'visitante@ifnmg.edu.br';
     $_SESSION['admin'] = 0;
+
+    $_SESSION['exibir_boas_vindas'] = true;
 
     header("Location: index.php");
     exit();

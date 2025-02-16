@@ -5,9 +5,9 @@ include_once('../inc/entradausuario.inc.php');
 
 date_default_timezone_set('America/Sao_Paulo');
 
-$dia = isset($_POST['dia']) ? (int)$_POST['dia'] : null;
-$mes = isset($_POST['mes']) ? (int)$_POST['mes'] : null;
-$ano = isset($_POST['ano']) ? (int)$_POST['ano'] : null;
+$dia = isset($_POST['dia']) ? (int) $_POST['dia'] : null;
+$mes = isset($_POST['mes']) ? (int) $_POST['mes'] : null;
+$ano = isset($_POST['ano']) ? (int) $_POST['ano'] : null;
 $ambiente_id = isset($_POST['ambiente_id']) ? $_POST['ambiente_id'] : null;
 
 if (!$dia || !$mes || !$ano || !$ambiente_id) {
@@ -24,7 +24,7 @@ if ($data_selecionada < $data_atual) {
 }
 
 $horarios_disponiveis = [];
-for ($h = 8; $h <= 18; $h++) { 
+for ($h = 8; $h <= 18; $h++) {
     $horarios_disponiveis[] = sprintf('%02d:00', $h);
 }
 

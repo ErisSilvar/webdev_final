@@ -13,7 +13,7 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['senha'])) {
         $usuarioExistente = R::findOne('usuario', 'email = ?', [$email]);
 
         if ($usuarioExistente) {
-            $_SESSION['mensagem'] = ['texto' => 'Este email já está cadastrado no sistema.', 'tipo' => 'erro'];
+            $_SESSION['mensagem'] = ['texto' => 'Este email já existe.', 'tipo' => 'erro'];
         } else {
             $usuario = R::dispense('usuario');
             $usuario->nome = $nome;

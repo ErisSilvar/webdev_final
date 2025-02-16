@@ -70,7 +70,7 @@ $reservas = R::find('reservas', 'id != ?', [1]);
         }
 
         .reservar_btn {
-            background-color:rgb(237, 13, 13);
+            background-color: rgb(237, 13, 13);
             color: white;
             font-size: 1rem;
             padding: 10px 20px;
@@ -81,7 +81,7 @@ $reservas = R::find('reservas', 'id != ?', [1]);
         }
 
         .reservar_btn:hover {
-            background-color:rgb(142, 56, 56);
+            background-color: rgb(142, 56, 56);
             transform: scale(1.05);
         }
     </style>
@@ -94,21 +94,22 @@ $reservas = R::find('reservas', 'id != ?', [1]);
         ?>
     </header>
     <main>
-    <div class="container">
+        <div class="container">
             <h1>Minhas reservas</h1>
             <h1>Salas</h1>
             <?php if (count($reservas) > 0): ?>
                 <div class="card-container">
                     <?php foreach ($reservas as $reserva):
-                    $ambiente = R::load('ambiente', $reserva->ambiente_id);
-                    ?>
+                        $ambiente = R::load('ambiente', $reserva->ambiente_id);
+                        ?>
                         <div class="card">
                             <img src="./processar/uploads/ambientes/<?= htmlspecialchars($ambiente->imagem) ?>"
                                 alt="Imagem da Sala">
                             <h3><?= htmlspecialchars($ambiente->nome) ?></h3>
                             <p>Data: <?= htmlspecialchars($reserva->data_reserva) ?></p>
                             <p>Horário: <?= htmlspecialchars($reserva->horario) ?></p>
-                            <a href="cancelar_reserva.php?usuario_id=<?= $usuario_id ?>&reserva=<?= urlencode($reserva->ambiente_id) ?>">
+                            <a
+                                href="cancelar_reserva.php?usuario_id=<?= $usuario_id ?>&reserva=<?= urlencode($reserva->ambiente_id) ?>">
                                 <button class="reservar_btn">Cancelar reserva</button>
                             </a>
                         </div>
@@ -121,7 +122,7 @@ $reservas = R::find('reservas', 'id != ?', [1]);
             <h1>Laboratórios</h1>
             <?php if (count($reservas) > 0): ?>
                 <div class="card-container">
-                    <?php foreach ($reservas as $reserva): 
+                    <?php foreach ($reservas as $reserva):
                         $ambiente = R::load('ambiente', $reserva->ambiente_id);
                         ?>
                         <div class="card">
@@ -130,7 +131,8 @@ $reservas = R::find('reservas', 'id != ?', [1]);
                             <h3><?= htmlspecialchars($ambiente->nome) ?></h3>
                             <p><?= htmlspecialchars($reserva->data_reserva) ?></p>
                             <p><?= htmlspecialchars($reserva->horario) ?></p>
-                            <a href="cancelar_reserva.php?usuario_id=<?= $usuario_id ?>&ambiente=<?= urlencode($reserva->ambiente_id) ?>">
+                            <a
+                                href="cancelar_reserva.php?usuario_id=<?= $usuario_id ?>&ambiente=<?= urlencode($reserva->ambiente_id) ?>">
                                 <button class="reservar_btn">Reservar</button>
                             </a>
                         </div>

@@ -9,11 +9,10 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
     exit();
 }
 
-if ($_SESSION['email'] === 'root@admin.com') {
-    $usuarios = R::find('usuario', 'id != ?', [1]);
-} else {
-    $usuarios = R::find('usuario', 'id != ? AND admin = 0', [1]);
-}
+$usuarioLogado = $_SESSION['email'];
+
+$usuarios = R::find('usuario', 'id != ? AND email != ?', [1, $usuarioLogado]);
+
 
 ?>
 <!DOCTYPE html>
@@ -22,38 +21,51 @@ if ($_SESSION['email'] === 'root@admin.com') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listagem de Usuários</title>
+    <title>Deletar usuários</title>
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/notificacao.css">
     <style>
-        body {
+        main {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            text-align: center;
+            min-height: 100vh;
+            padding: 20px;
         }
 
+
         .container {
-            background-color: white;
+            background: white;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 60%;
-            max-width: 80%;
-            margin-top: 50px;
             text-align: center;
+            max-width: 50%;
+            width: 100%;
+            overflow-x: auto;
+
         }
 
         .container h2 {
             color: #2e7d32;
         }
 
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+
+        }
+
+
         table {
-            text-align: center;
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            min-width: 600px;
+
         }
 
         table th,
@@ -61,6 +73,8 @@ if ($_SESSION['email'] === 'root@admin.com') {
             padding: 12px;
             border: 1px solid #ddd;
             text-align: center;
+            white-space: nowrap;
+
         }
 
         table th {
@@ -81,6 +95,38 @@ if ($_SESSION['email'] === 'root@admin.com') {
         .btn-excluir:hover {
             background-color: #c62828;
         }
+
+
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            table {
+                min-width: 100%;
+
+            }
+
+            table th,
+            table td {
+                padding: 8px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            table {
+                display: block;
+                overflow-x: auto;
+
+            }
+
+            table th,
+            table td {
+                padding: 6px;
+                font-size: 14px;
+
+            }
+        }
     </style>
 </head>
 
@@ -89,43 +135,45 @@ if ($_SESSION['email'] === 'root@admin.com') {
         <?php include_once('./inc/cabecalho.inc.php'); ?>
     </header>
 
-    <?php
-    if (isset($_SESSION['mensagem'])) {
-        $mensagem = $_SESSION['mensagem'];
-        echo "<div class='notificacao {$mensagem['tipo']}'>{$mensagem['texto']}</div>";
-        unset($_SESSION['mensagem']);
-    }
-    ?>
-
-    <div class="container">
-        <h2>Usuários Cadastrados</h2>
-        <form method="POST" action="./processar/processar_exclusao.php">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Tipo</th>
-                        <th>Ação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($usuarios as $usuario): ?>
+    <main>
+        <?php
+        if (isset($_SESSION['mensagem'])) {
+            $mensagem = $_SESSION['mensagem'];
+            echo "<div class='notificacao {$mensagem['tipo']}'>{$mensagem['texto']}</div>";
+            unset($_SESSION['mensagem']);
+        }
+        ?>
+        <div class="container">
+            <h2>Usuários Cadastrados</h2>
+            <form method="POST" action="./processar/processar_exclusao.php">
+                <table>
+                    <thead>
                         <tr>
-                            <td><?php echo $usuario->id; ?></td>
-                            <td><?php echo $usuario->nome; ?></td>
-                            <td><?php echo $usuario->email; ?></td>
-                            <td><?php echo $usuario->admin == 1 ? 'Administrador' : 'Usuário Comum'; ?></td>
-                            <td>
-                                <button type="submit" name="excluir_id" value="<?php echo $usuario->id; ?>" class="btn-excluir">Excluir</button>
-                            </td>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Tipo</th>
+                            <th>Ação</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </form>
-    </div>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($usuarios as $usuario): ?>
+                            <tr>
+                                <td><?php echo $usuario->id; ?></td>
+                                <td><?php echo $usuario->nome; ?></td>
+                                <td><?php echo $usuario->email; ?></td>
+                                <td><?php echo $usuario->admin == 1 ? 'Administrador' : 'Usuário Comum'; ?></td>
+                                <td>
+                                    <button type="submit" name="excluir_id" value="<?php echo $usuario->id; ?>"
+                                        class="btn-excluir">Excluir</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </main>
 
     <footer>
         <?php include_once('./inc/rodape.inc.php'); ?>

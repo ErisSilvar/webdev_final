@@ -17,15 +17,16 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
     <title>Cadastrar ambiente</title>
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/notificacao.css">
-  
+
     <style>
-        body {
+        main {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            text-align: center;
             min-height: 100vh;
-            margin: auto;
-            font-family: Arial, sans-serif;
+            padding: 20px;
         }
 
         .container {
@@ -34,7 +35,8 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 90%;
-            max-width: 600px;
+            max-width: 460px;
+            font-size: 15px;
             text-align: center;
         }
 
@@ -109,9 +111,9 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
                 <div class="form-group">
                     <label for="tipo">Tipo de Ambiente:</label>
                     <select id="tipo" name="tipo" required>
-                        <option value="" >Selecione</option>
-                        <option value="sala" >Sala</option>
-                        <option value="laboratorio" >Laboratório</option>
+                        <option value="">Selecione</option>
+                        <option value="sala">Sala</option>
+                        <option value="laboratorio">Laboratório</option>
                     </select>
                 </div>
                 <div class="form-group">

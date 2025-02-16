@@ -10,7 +10,6 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
 }
 
 $ambientes = R::findAll('ambiente');
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -18,38 +17,50 @@ $ambientes = R::findAll('ambiente');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listagem de Usuários</title>
+    <title>Deletar Ambientes</title>
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/notificacao.css">
     <style>
-        body {
+        main {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            text-align: center;
+            min-height: 100vh;
+            padding: 20px;
         }
 
+
         .container {
-            background-color: white;
+            background: white;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 60%;
-            max-width: 80%;
-            margin-top: 50px;
             text-align: center;
+            max-width: 900px;
+            width: 90%;
+            overflow-x: auto;
+            margin-top: 40px;
+            padding-bottom: 20px;
         }
 
         .container h2 {
             color: #2e7d32;
         }
 
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+
         table {
-            text-align: center;
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            min-width: 600px;
         }
 
         table th,
@@ -57,17 +68,18 @@ $ambientes = R::findAll('ambiente');
             padding: 12px;
             border: 1px solid #ddd;
             text-align: center;
-            width: 20px;
-        }
-
-        table td img {
-            width: 100px;
-            height: auto;
+            white-space: nowrap;
         }
 
         table th {
             background-color: #2e7d32;
             color: white;
+        }
+
+        table td img {
+            width: 80px;
+            height: auto;
+            border-radius: 5px;
         }
 
         .btn-excluir {
@@ -83,6 +95,35 @@ $ambientes = R::findAll('ambiente');
         .btn-excluir:hover {
             background-color: #c62828;
         }
+
+
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            table {
+                min-width: 100%;
+            }
+
+            table th,
+            table td {
+                padding: 8px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            table th,
+            table td {
+                padding: 6px;
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 
@@ -91,44 +132,46 @@ $ambientes = R::findAll('ambiente');
         <?php include_once('./inc/cabecalho.inc.php'); ?>
     </header>
 
-    <?php
-    if (isset($_SESSION['mensagem'])) {
-        $mensagem = $_SESSION['mensagem'];
-        echo "<div class='notificacao {$mensagem['tipo']}'>{$mensagem['texto']}</div>";
-        unset($_SESSION['mensagem']);
-    }
-    ?>
-
-    <div class="container">
-        <h2>Ambientes Cadastrados</h2>
-        <form method="POST" action="./processar/processar_exclusaoambiente.php">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Tipo</th>
-                        <th>Nome</th>
-                        <th>Imagem</th>
-                        <th>Ação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($ambientes as $ambiente): ?>
+    <main>
+        <?php
+        if (isset($_SESSION['mensagem'])) {
+            $mensagem = $_SESSION['mensagem'];
+            echo "<div class='notificacao {$mensagem['tipo']}'>{$mensagem['texto']}</div>";
+            unset($_SESSION['mensagem']);
+        }
+        ?>
+        <div class="container">
+            <h2>Ambientes Cadastrados</h2>
+            <form method="POST" action="./processar/processar_exclusaoambiente.php">
+                <table>
+                    <thead>
                         <tr>
-                            <td><?php echo $ambiente->id; ?></td>
-                            <td><?php echo $ambiente->tipo; ?></td>
-                            <td><?php echo $ambiente->nome; ?></td>
-                            <td><img src="./processar/uploads/ambientes/<?= htmlspecialchars($ambiente->imagem) ?>"
-                                    alt="Imagem do Ambiente"></td>
-                            <td>
-                                <button type="submit" name="excluir_id" value="<?php echo $ambiente->id; ?>" class="btn-excluir">Excluir</button>
-                            </td>
+                            <th>ID</th>
+                            <th>Tipo</th>
+                            <th>Nome</th>
+                            <th>Imagem</th>
+                            <th>Ação</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </form>
-    </div>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($ambientes as $ambiente): ?>
+                            <tr>
+                                <td><?php echo $ambiente->id; ?></td>
+                                <td><?php echo $ambiente->tipo; ?></td>
+                                <td><?php echo $ambiente->nome; ?></td>
+                                <td><img src="./processar/uploads/ambientes/<?= htmlspecialchars($ambiente->imagem) ?>"
+                                        alt="Imagem do Ambiente"></td>
+                                <td>
+                                    <button type="submit" name="excluir_id" value="<?php echo $ambiente->id; ?>"
+                                        class="btn-excluir">Excluir</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </main>
 
     <footer>
         <?php include_once('./inc/rodape.inc.php'); ?>

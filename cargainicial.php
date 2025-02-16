@@ -16,7 +16,7 @@ try {
 
 $temAdmin = false;
 if ($tabelaExiste) {
-   
+
     $temAdmin = R::count('usuario', 'admin = 1') > 0;
 }
 

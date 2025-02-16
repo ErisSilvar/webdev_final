@@ -11,8 +11,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
 }
 
 if (isset($_POST['excluir_id'])) {
-    $excluir_id = $_POST['excluir_id'];
-		{
+    $excluir_id = $_POST['excluir_id']; {
         $ambiente = R::load('ambiente', $excluir_id);
 
         if ($ambiente->id) {

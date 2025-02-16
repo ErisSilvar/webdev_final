@@ -11,7 +11,7 @@ if (isset($_POST['tipo']) && isset($_POST['nome']) && isset($_POST['descricao'])
     include_once '../inc/conexaobd.inc.php';
 
     try {
-        $ambienteExistente = R::findOne('ambiente', 'nome = ?', [$nome]);
+        $ambienteExistente = R::findOne('ambiente', 'tipo = ? AND nome = ?', [$tipo, $nome]);
         if ($ambienteExistente) {
             $_SESSION['mensagem'] = ['texto' => 'Este ambiente já está cadastrado no sistema.', 'tipo' => 'erro'];
             header('Location: ../cadastrarambiente.php');

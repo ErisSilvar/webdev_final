@@ -29,8 +29,13 @@ if ($nomeUsuario !== 'Visitante') {
     $fazer_login = '<a href="./login.php"><p>Fazer login</p></a>';
 }
 
+
 if (isset($_SESSION['admin']) && $_SESSION['admin'] != 0) {
-    $linkAdmin = '<a href="./admin.php">Menu Admin</a>';
+    if (basename($_SERVER['PHP_SELF']) !== "admin.php") {
+        $linkAdmin = '<a href="./admin.php">Menu Admin</a>';
+    } else {
+        $linkAdmin = '';
+    }
 } else {
     $linkAdmin = '';
 }
@@ -46,5 +51,6 @@ if (basename($_SERVER['PHP_SELF']) !== "sobre.php") {
 } else {
     $linkSobre = '';
 }
+
 
 ?>

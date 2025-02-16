@@ -26,7 +26,7 @@ for ($h = 8; $h <= 18; $h++) {
 }
 
 
-$dia_selecionado = isset($_GET['dia']) ? (int)$_GET['dia'] : null;
+$dia_selecionado = isset($_GET['dia']) ? (int) $_GET['dia'] : null;
 $horarios_ocupados = [];
 if ($dia_selecionado) {
     $data_selecionada = sprintf('%04d-%02d-%02d', date('Y', strtotime($data)), date('m', strtotime($data)), $dia_selecionado);
@@ -48,12 +48,11 @@ if ($dia_selecionado) {
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/notificacao.css">
     <style>
-
         .container {
             max-width: 900px;
             margin: 40px auto;
             padding: 30px;
-            background:rgba(255, 255, 255, 0.43);
+            background: rgba(255, 255, 255, 0.43);
             border-radius: 12px;
             box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
         }
@@ -85,7 +84,7 @@ if ($dia_selecionado) {
             border-color: #888;
         }
 
-        /* Tabela de calendário */
+
         table {
             width: 100%;
             max-width: 850px;
@@ -126,7 +125,7 @@ if ($dia_selecionado) {
             color: white;
         }
 
-        /* Formulário de reserva */
+
         form div {
             display: flex;
             flex-wrap: wrap;
@@ -236,7 +235,8 @@ if ($dia_selecionado) {
                 </tr>
             </table>
             <?php if ($dia_selecionado): ?>
-                <h3>Horários disponíveis para o dia <?= $dia_selecionado ?>/<?= date('m', strtotime($data)) ?>/<?= date('Y', strtotime($data)) ?></h3>
+                <h3>Horários disponíveis para o dia
+                    <?= $dia_selecionado ?>/<?= date('m', strtotime($data)) ?>/<?= date('Y', strtotime($data)) ?></h3>
                 <form method="post" action="./processar/processar_reserva.php">
                     <input type="hidden" name="data_reserva" value="<?= $data_selecionada ?>">
                     <input type="hidden" name="ambiente_id" value="<?= $ambiente_id ?>">
@@ -247,7 +247,8 @@ if ($dia_selecionado) {
                             $mensagem = in_array($horario, $horarios_ocupados) ? "<br><small>Já reservado</small>" : "";
                             ?>
                             <label style="display: inline-block; padding: 10px; border: 1px solid #ccc; cursor: pointer;">
-                                <input type="checkbox" name="horario" value="<?= $horario ?>" <?= $disabled ?>> <?= $horario ?> <?= $mensagem ?>
+                                <input type="checkbox" name="horario" value="<?= $horario ?>" <?= $disabled ?>> <?= $horario ?>
+                                <?= $mensagem ?>
                             </label>
                         <?php endforeach; ?>
                     </div>

@@ -79,6 +79,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == 0) {
                 <a href="cadastrarambiente.php">Cadastrar ambientes</a>
                 <a href="deletarambiente.php">Deletar ambientes</a>
             </div>
+        </div>
     </main>
     <footer>
         <?php include_once './inc/rodape.inc.php'; ?>
