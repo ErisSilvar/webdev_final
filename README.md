@@ -8,3 +8,8 @@ O que fazer agora?
 -> Mexer com notificação em reservar.php.
 -> Tirar os ?> dos arquivos php que não tem HTML.
 -> organizar código e arquivos.
+-> Editar usuário e ambiente
+-> mudar imagem de funco da pag login
+-> alterar css
+-> link no calendario que leva aos dados da pessoa que fez a reserva
+
