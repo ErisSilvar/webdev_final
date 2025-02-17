@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 
 if (isset($_SESSION['email']) && $_SESSION['email'] === "visitante@ifnmg.edu.br") {

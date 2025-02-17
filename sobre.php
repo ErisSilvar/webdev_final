@@ -6,7 +6,6 @@ require_once './inc/testebd.inc.php';
 require_once './inc/verificar_acesso.inc.php';
 ?>
 
-?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 

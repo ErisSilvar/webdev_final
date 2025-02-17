@@ -52,5 +52,11 @@ if (basename($_SERVER['PHP_SELF']) !== "sobre.php") {
     $linkSobre = '';
 }
 
+if (basename($_SERVER['PHP_SELF']) !== "minhasreservas.php") {
+    $linkReservas = '<a href="minhasreservas.php">Minhas Reservas</a>';
+} else {
+    $linkReservas = '';
+}
+
 
 ?>

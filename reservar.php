@@ -1,16 +1,11 @@
 <?php
-require_once 'class/rb.php';
+include_once './class/rb.php';
 require_once './inc/conexaobd.inc.php';
 include_once './inc/entradausuario.inc.php';
 require_once './inc/testebd.inc.php';
+require_once './inc/verificar_acesso.inc.php';
 
 setlocale(LC_TIME, 'pt_BR.utf8', 'pt_BR', 'portuguese');
-
-
-if (!isset($_SESSION['email']) || $_SESSION['email'] == 'visitante@ifnmg.edu.br') {
-    header("Location: index.php");
-    exit;
-}
 
 $usuario_id = isset($_SESSION['email']) ? $_SESSION['email'] : null;
 $ambiente_id = isset($_GET['ambiente']) ? $_GET['ambiente'] : null;
@@ -48,13 +43,26 @@ if ($dia_selecionado) {
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/notificacao.css">
     <style>
+        header {
+            z-index: 10;
+        }
+
+        main {
+            margin-top: 90px;
+            position: relative;
+        }
+
+        table {
+            margin-top: 20px;
+        }
+
         .container {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(1, 17, 1, 0.42);
             max-width: 900px;
-            margin: 40px auto;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.43);
-            border-radius: 12px;
-            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+            margin: 50px auto;
+            text-align: center;
         }
 
         h1,
@@ -94,6 +102,7 @@ if ($dia_selecionado) {
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            table-layout: fixed;
         }
 
         th,
@@ -102,27 +111,37 @@ if ($dia_selecionado) {
             text-align: center;
             padding: 18px;
             border: 1px solid #ddd;
+            box-sizing: border-box;
         }
 
         th {
-            background-color: #c2c2c2;
+            background-color: rgb(85, 141, 85);
             font-weight: bold;
             text-transform: uppercase;
         }
 
-        td a {
-            display: block;
-            padding: 12px;
-            color: #444;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: 0.3s;
-            font-weight: bold;
+
+        td {
+            position: relative;
         }
 
+        td:hover {
+            background-color: #c9f7c9;
+
+            transform: scale(1);
+
+            transition: all 0.3s ease;
+
+        }
+
+
         td a:hover {
-            background-color: #bbb;
-            color: white;
+            background-color: rgba(3, 236, 34, 0.26);
+
+            color: black;
+            transform: scale(1.1);
+
+            transition: all 0.3s ease;
         }
 
 
@@ -148,7 +167,7 @@ if ($dia_selecionado) {
         }
 
         label:hover {
-            background-color: #f0f0f0;
+            background-color: rgba(3, 236, 34, 0.26);
         }
 
         input[type="radio"]:disabled+label {
@@ -161,16 +180,15 @@ if ($dia_selecionado) {
             padding: 12px 24px;
             font-size: 18px;
             color: white;
-            background-color: #007BFF;
+            background-color: rgb(55, 131, 11);
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            margin-top: 25px;
             transition: 0.3s;
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: rgb(0, 179, 9);
         }
 
         @media (max-width: 768px) {
@@ -195,6 +213,13 @@ if ($dia_selecionado) {
         <?php include_once('inc/cabecalho.inc.php'); ?>
     </header>
     <main>
+        <?php
+        if (isset($_SESSION['mensagem'])) {
+            $mensagem = $_SESSION['mensagem'];
+            echo "<div class='notificacao {$mensagem['tipo']}'>{$mensagem['texto']}</div>";
+            unset($_SESSION['mensagem']);
+        }
+        ?>
         <div class="container">
             <h1>Calendário de Reservas</h1>
             <h2><?= ucfirst($mesNome) . " " . date('Y', strtotime($data)) ?></h2>
@@ -215,48 +240,78 @@ if ($dia_selecionado) {
                 </tr>
                 <tr>
                     <?php
-                    for ($i = 0; $i < $diassemana; $i++) {
-                        echo "<td>&nbsp;</td>";
-                    }
+                    $hoje = date('Y-m-d');
+
                     for ($i = 1; $i <= $diasmes; $i++) {
+                        $data_atual = sprintf('%04d-%02d-%02d', date('Y', strtotime($data)), date('m', strtotime($data)), $i);
+
                         if ($usuario_id) {
-                            echo "<td><a href='?dia=$i&mes=$data&ambiente=$ambiente_id'>$i</a></td>";
+                            if ($data_atual >= $hoje) {
+                                echo "<td><a href='?dia=$i&mes=$data&ambiente=$ambiente_id'>$i</a></td>";
+                            } else {
+                                echo "<td style='color: grey;'>$i</td>";
+                            }
                         } else {
                             echo "<td>$i</td>";
                         }
+
                         if (($i + $diassemana) % 7 == 0) {
                             echo "</tr><tr>";
                         }
-                    }
-                    for ($i = 0; $i < (7 - (($diasmes + $diassemana) % 7)); $i++) {
-                        echo "<td>&nbsp;</td>";
                     }
                     ?>
                 </tr>
             </table>
             <?php if ($dia_selecionado): ?>
-                <h3>Horários disponíveis para o dia
-                    <?= $dia_selecionado ?>/<?= date('m', strtotime($data)) ?>/<?= date('Y', strtotime($data)) ?></h3>
+                <h2>Horários disponíveis para o dia
+                    <?= $dia_selecionado ?>/<?= date('m', strtotime($data)) ?>/<?= date('Y', strtotime($data)) ?>
+                </h2>
                 <form method="post" action="./processar/processar_reserva.php">
                     <input type="hidden" name="data_reserva" value="<?= $data_selecionada ?>">
                     <input type="hidden" name="ambiente_id" value="<?= $ambiente_id ?>">
                     <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                        <?php foreach ($horarios_disponiveis as $horario): ?>
-                            <?php
-                            $disabled = in_array($horario, $horarios_ocupados) ? "disabled style='background-color: red; color: white;'" : "";
-                            $mensagem = in_array($horario, $horarios_ocupados) ? "<br><small>Já reservado</small>" : "";
+
+                        <?php
+                        $hoje = date('Y-m-d');
+                        $hora_atual = date('H:i');
+
+                        foreach ($horarios_disponiveis as $horario):
+                            $hora_comparacao = sprintf('%02d:00', (int) substr($horario, 0, 2)); // Formato correto
+                    
+
+                            $ocupado = in_array($horario, $horarios_ocupados);
+                            $passado = ($data_selecionada == $hoje) && ($hora_comparacao < $hora_atual);
+
+
+                            $disabled = ($ocupado || $passado) ? "disabled" : "";
+
+                            $style = "";
+                            $mensagem = "";
+                            if ($ocupado) {
+                                $style = "background-color: red; color: white;";
+                                $mensagem = "<br><small>Já reservado</small>";
+                            } elseif ($passado) {
+                                $style = "background-color: grey; color: white;";
+                                $mensagem = "<br><small>Horário indisponível</small>";
+                            }
                             ?>
-                            <label style="display: inline-block; padding: 10px; border: 1px solid #ccc; cursor: pointer;">
-                                <input type="checkbox" name="horario" value="<?= $horario ?>" <?= $disabled ?>> <?= $horario ?>
+                            <label
+                                style="display: inline-block; padding: 10px; border: 1px solid #ccc; cursor: pointer; <?= $style ?>">
+                                <input type="checkbox" name="horario[]" value="<?= $horario ?>" <?= $disabled ?>> <?= $horario ?>
                                 <?= $mensagem ?>
                             </label>
                         <?php endforeach; ?>
+
                     </div>
                     <br><button type="submit">Reservar</button>
                 </form>
             <?php endif; ?>
+
         </div>
     </main>
+    <footer>
+        <?php include_once './inc/rodape.inc.php' ?>
+    </footer>
 </body>
 
 </html>

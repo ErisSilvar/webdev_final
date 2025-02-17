@@ -39,17 +39,13 @@ $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
         }
 
         .card {
-            width: calc(15% - 15px);
-
-            min-width: 200px;
-
-            background-color: rgba(255, 255, 255, 0.49);
+            width: 20%;
+            background-color: rgba(255, 255, 255, 0.69);
             border-radius: 8px;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
             text-align: center;
             padding: 15px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
 
@@ -120,7 +116,6 @@ $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
         <?php include_once './inc/cabecalho.inc.php'; ?>
     </header>
     <main>
-        </div>
         <?php if (isset($_SESSION['exibir_boas_vindas']) && $_SESSION['exibir_boas_vindas']): ?>
             <div class="notificacao sucesso">
                 Bem-vindo, <?php echo htmlspecialchars($_SESSION['nome']); ?>!

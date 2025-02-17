@@ -3,6 +3,7 @@
     <?= $linkHome ?>
     <?= $linkSobre ?>
     <?= $linkAdmin ?>
+    <?= $linkReservas ?>
 
     <div class="elementos-php">
         <span class="apresentacao-user"><?= $mensagem ?></span>

@@ -3,11 +3,23 @@ require_once './class/rb.php';
 require_once './inc/conexaobd.inc.php';
 include_once './inc/entradausuario.inc.php';
 require_once './inc/testebd.inc.php';
+require_once './inc/verificar_acesso.inc.php';
 
-$usuario_id = $_SESSION['email'];
+$usuario_email = $_SESSION['email'];
 
-$reservas = R::find('reservas', 'id != ?', [1]);
+$reservas = R::find('reservas', 'usuario_email = ?', [$_SESSION['email']]);
 
+$salas_reservadas = [];
+$laboratorios_reservados = [];
+
+foreach ($reservas as $reserva) {
+    $ambiente = R::load('ambiente', $reserva->ambiente_id);
+    if ($ambiente->tipo == 'sala') {
+        $salas_reservadas[] = $reserva;
+    } elseif ($ambiente->tipo == 'laboratorio') {
+        $laboratorios_reservados[] = $reserva;
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -18,6 +30,7 @@ $reservas = R::find('reservas', 'id != ?', [1]);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minhas reservas</title>
     <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/notificacao.css">
     <style>
         .container {
             padding: 20px;
@@ -46,9 +59,30 @@ $reservas = R::find('reservas', 'id != ?', [1]);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
+        @media (max-width: 900px) {
+            .card {
+                width: calc(33.33% - 15px);
+
+            }
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                width: calc(50% - 15px);
+
+            }
+        }
+
+        @media (max-width: 400px) {
+            .card {
+                width: 100%;
+
+            }
+        }
+
         .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 5px 15px rgba(53, 130, 46, 0.3);
+            background-color: rgba(199, 223, 207, 0.8);
+            box-shadow: 0px 5px 15px rgba(27, 228, 9, 0.3);
         }
 
         .card img {
@@ -94,22 +128,29 @@ $reservas = R::find('reservas', 'id != ?', [1]);
         ?>
     </header>
     <main>
+        <?php
+        if (isset($_SESSION['mensagem'])) {
+            $mensagem = $_SESSION['mensagem'];
+            echo "<div class='notificacao {$mensagem['tipo']}'>{$mensagem['texto']}</div>";
+            unset($_SESSION['mensagem']);
+        }
+        ?>
         <div class="container">
             <h1>Minhas reservas</h1>
             <h1>Salas</h1>
-            <?php if (count($reservas) > 0): ?>
+            <?php if (count($salas_reservadas) > 0): ?>
                 <div class="card-container">
-                    <?php foreach ($reservas as $reserva):
+                    <?php foreach ($salas_reservadas as $reserva):
                         $ambiente = R::load('ambiente', $reserva->ambiente_id);
                         ?>
                         <div class="card">
                             <img src="./processar/uploads/ambientes/<?= htmlspecialchars($ambiente->imagem) ?>"
                                 alt="Imagem da Sala">
                             <h3><?= htmlspecialchars($ambiente->nome) ?></h3>
-                            <p>Data: <?= htmlspecialchars($reserva->data_reserva) ?></p>
+                            <p>Data: <?= (new DateTime($reserva->data_reserva))->format('d/m/Y') ?></p>
                             <p>Horário: <?= htmlspecialchars($reserva->horario) ?></p>
                             <a
-                                href="cancelar_reserva.php?usuario_id=<?= $usuario_id ?>&reserva=<?= urlencode($reserva->ambiente_id) ?>">
+                                href="./processar/cancelar_reserva.php?usuario_email=<?= $usuario_email ?>&reserva=<?= urlencode($reserva->id) ?>">
                                 <button class="reservar_btn">Cancelar reserva</button>
                             </a>
                         </div>
@@ -120,27 +161,28 @@ $reservas = R::find('reservas', 'id != ?', [1]);
             <?php endif; ?>
 
             <h1>Laboratórios</h1>
-            <?php if (count($reservas) > 0): ?>
+            <?php if (count($laboratorios_reservados) > 0): ?>
                 <div class="card-container">
-                    <?php foreach ($reservas as $reserva):
+                    <?php foreach ($laboratorios_reservados as $reserva):
                         $ambiente = R::load('ambiente', $reserva->ambiente_id);
                         ?>
                         <div class="card">
                             <img src="./processar/uploads/ambientes/<?= htmlspecialchars($ambiente->imagem) ?>"
                                 alt="Imagem do Laboratório">
                             <h3><?= htmlspecialchars($ambiente->nome) ?></h3>
-                            <p><?= htmlspecialchars($reserva->data_reserva) ?></p>
-                            <p><?= htmlspecialchars($reserva->horario) ?></p>
+                            <p>Data: <?= (new DateTime($reserva->data_reserva))->format('d/m/Y') ?></p>
+                            <p>Horário: <?= htmlspecialchars($reserva->horario) ?></p>
                             <a
-                                href="cancelar_reserva.php?usuario_id=<?= $usuario_id ?>&ambiente=<?= urlencode($reserva->ambiente_id) ?>">
-                                <button class="reservar_btn">Reservar</button>
+                                href="./processar/cancelar_reserva.php?usuario_email=<?= $usuario_email ?>&reserva=<?= urlencode($reserva->id) ?>">
+                                <button class="reservar_btn">Cancelar reserva</button>
                             </a>
                         </div>
                     <?php endforeach; ?>
                 </div>
             <?php else: ?>
-                <p class="mensagem-central">Nenhum laboratório cadastrado.</p>
+                <p class="mensagem-central">Nenhum laboratório reservado.</p>
             <?php endif; ?>
+
         </div>
     </main>
     <footer>
