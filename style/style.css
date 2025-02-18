@@ -1,14 +1,14 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: rgba(92, 122, 100, 0.61);
+    background-color: #dfeff2;
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(38, 106, 41);
+    background-color:#0c3468;
     color: white;
     padding: 10px 20px;
     position: fixed;
@@ -28,13 +28,13 @@ header {
 
 a {
     text-decoration: none;
-    color: rgba(2, 2, 2, 0.78);
+    color: rgba(255, 255, 255, 0.78);
     transition: color 0.3s, background-color 0.3s;
     font-weight: bold;
 }
 
 a:hover {
-    color: rgb(6, 229, 17);
+    color: #021859;
     background-color: rgba(255, 99, 71, 0.2);
     padding: 2px 4px;
     border-radius: 3px;
@@ -42,7 +42,7 @@ a:hover {
 
 footer {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: rgb(38, 106, 41);
+    background-color: #0c3468;
     color: rgb(255, 255, 255);
     text-align: center;
     padding: 10px 0;
@@ -67,14 +67,14 @@ footer p {
 .elementos-php .apresentacao-user {
     font-size: 1.3rem;
     font-weight: bold;
-    color: #121b05d7;
+    color: #ffffffd7;
 }
 
 .elementos-php .btn-usuario {
     padding: 5px 10px;
     font-size: 12px;
     font-weight: bold;
-    background-color: #2b8b30;
+    background-color: #1796b3;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -82,6 +82,6 @@ footer p {
 }
 
 .elementos-php .btn-usuario:hover {
-    background-color: #44ac50;
+    background-color: #1f788c;
     transform: scale(1.05);
 }
