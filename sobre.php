@@ -3,7 +3,6 @@ require_once './class/rb.php';
 require_once './inc/conexaobd.inc.php';
 include_once './inc/entradausuario.inc.php';
 require_once './inc/testebd.inc.php';
-require_once './inc/verificar_acesso.inc.php';
 ?>
 
 <!DOCTYPE html>
