@@ -75,7 +75,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == 0) {
             <h3>Escolha uma das opções abaixo para gerenciar o sistema:</h3>
             <div class="menu-buttons">
                 <a href="cadastraruser.php">Cadastrar usuários</a>
-                <a href="deletaruser.php">Deletar usuários</a>
+                <a href="gerenciaruser.php">Gerenciar usuários</a>
                 <a href="cadastrarambiente.php">Cadastrar ambientes</a>
                 <a href="deletarambiente.php">Deletar ambientes</a>
             </div>

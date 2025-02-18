@@ -16,7 +16,7 @@ $usuarios = R::find('usuario', 'id != ? AND email != ?', [1, $usuarioLogado]);
 
 ?>
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR"> 
 
 <head>
     <meta charset="UTF-8">
