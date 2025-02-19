@@ -27,7 +27,6 @@ if (isset($_POST['login'])) {
             'tipo' => 'erro',
             'mensagem' => 'Email ou senha incorretos.'
         ];
-
     }
 }
 
@@ -53,7 +52,7 @@ if (isset($_POST['visitante'])) {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: url("./imgs/ifnmg_moc.jpg") no-repeat center center/cover;
+            background: url("./imgs/if.jpg") no-repeat center center/cover;
             margin: 0;
             display: flex;
             justify-content: center;
@@ -75,7 +74,7 @@ if (isset($_POST['visitante'])) {
         }
 
         .container h1 {
-            color: #2e7d32;
+            color: #1f788c;
         }
 
         .form-group {
@@ -86,13 +85,13 @@ if (isset($_POST['visitante'])) {
         .form-group label {
             display: block;
             font-weight: bold;
-            color: #2e7d32;
+            color: #1f788c;
         }
 
         .form-group input {
             width: 95%;
             padding: 10px;
-            border: 1px solid #66bb6a;
+            border: 1px solid #1f788c;
             border-radius: 5px;
             font-size: 1rem;
         }
@@ -101,7 +100,7 @@ if (isset($_POST['visitante'])) {
             width: 100%;
             margin-bottom: 10px;
             padding: 10px;
-            background-color: #2e7d32;
+            background-color: #1796b3;
             color: white;
             border: none;
             border-radius: 5px;
@@ -111,7 +110,8 @@ if (isset($_POST['visitante'])) {
         }
 
         .btn-submit:hover {
-            background-color: #1b5e20;
+            background-color: #1f788c;
+            color: #021859;
         }
     </style>
 </head>
