@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #dfeff2;
+    background-color: #d9e3e4;
 }
 
 header {
@@ -34,8 +34,8 @@ a {
 }
 
 a:hover {
-    color: #021859;
-    background-color: rgba(255, 99, 71, 0.2);
+    color: #fcfcfc;
+    background-color: #081847;
     padding: 2px 4px;
     border-radius: 3px;
 }

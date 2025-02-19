@@ -115,7 +115,7 @@ if ($dia_selecionado) {
         }
 
         th {
-            background-color: rgb(85, 141, 85);
+            background-color:rgb(132, 164, 172);
             font-weight: bold;
             text-transform: uppercase;
         }
@@ -126,7 +126,7 @@ if ($dia_selecionado) {
         }
 
         td:hover {
-            background-color: #c9f7c9;
+            background-color: rgb(218, 232, 233);
 
             transform: scale(1);
 
@@ -134,9 +134,11 @@ if ($dia_selecionado) {
 
         }
 
-
+        td a {
+            color: rgba(66, 54, 54, 0.88);
+        }
         td a:hover {
-            background-color: rgba(3, 236, 34, 0.26);
+            background-color: rgb(167, 203, 212);;
 
             color: black;
             transform: scale(1.1);
@@ -144,6 +146,19 @@ if ($dia_selecionado) {
             transition: all 0.3s ease;
         }
 
+        td[style="color: grey;"] a:hover {
+            background-color: transparent;
+            box-shadow: none;
+            transform: none;
+        }
+
+        td[style="color: grey;"] {
+            background-color: #f2f2f2;
+        }
+
+        td[style="color: grey;"] a {
+            cursor: not-allowed;
+        }
 
         form div {
             display: flex;
@@ -167,7 +182,7 @@ if ($dia_selecionado) {
         }
 
         label:hover {
-            background-color: rgba(3, 236, 34, 0.26);
+            background-color: rgb(167, 203, 212);
         }
 
         input[type="radio"]:disabled+label {
@@ -180,7 +195,7 @@ if ($dia_selecionado) {
             padding: 12px 24px;
             font-size: 18px;
             color: white;
-            background-color: rgb(55, 131, 11);
+            background-color: #1796b3;
             border: none;
             border-radius: 6px;
             cursor: pointer;
@@ -188,7 +203,7 @@ if ($dia_selecionado) {
         }
 
         button:hover {
-            background-color: rgb(0, 179, 9);
+            background-color:  #1f788c;
         }
 
         @media (max-width: 768px) {
@@ -242,24 +257,29 @@ if ($dia_selecionado) {
                     <?php
                     $hoje = date('Y-m-d');
 
-                    for ($i = 1; $i <= $diasmes; $i++) {
-                        $data_atual = sprintf('%04d-%02d-%02d', date('Y', strtotime($data)), date('m', strtotime($data)), $i);
+                    for ($i = 0; $i < $diassemana; $i++) {
+                        echo "<td></td>";
+                    }
+
+                    for ($dia = 1; $dia <= $diasmes; $dia++) {
+                        $data_atual = sprintf('%04d-%02d-%02d', date('Y', strtotime($data)), date('m', strtotime($data)), $dia);
 
                         if ($usuario_id) {
                             if ($data_atual >= $hoje) {
-                                echo "<td><a href='?dia=$i&mes=$data&ambiente=$ambiente_id'>$i</a></td>";
+                                echo "<td><a href='?dia=$dia&mes=$data&ambiente=$ambiente_id'>$dia</a></td>";
                             } else {
-                                echo "<td style='color: grey;'>$i</td>";
+                                echo "<td style='color: grey;'>$dia</td>";
                             }
                         } else {
-                            echo "<td>$i</td>";
+                            echo "<td>$dia</td>";
                         }
 
-                        if (($i + $diassemana) % 7 == 0) {
+                        if (($dia + $diassemana) % 7 == 0) {
                             echo "</tr><tr>";
                         }
                     }
                     ?>
+
                 </tr>
             </table>
             <?php if ($dia_selecionado): ?>
@@ -277,7 +297,7 @@ if ($dia_selecionado) {
 
                         foreach ($horarios_disponiveis as $horario):
                             $hora_comparacao = sprintf('%02d:00', (int) substr($horario, 0, 2)); // Formato correto
-                    
+
 
                             $ocupado = in_array($horario, $horarios_ocupados);
                             $passado = ($data_selecionada == $hoje) && ($hora_comparacao < $hora_atual);
@@ -294,7 +314,7 @@ if ($dia_selecionado) {
                                 $style = "background-color: grey; color: white;";
                                 $mensagem = "<br><small>Horário indisponível</small>";
                             }
-                            ?>
+                        ?>
                             <label
                                 style="display: inline-block; padding: 10px; border: 1px solid #ccc; cursor: pointer; <?= $style ?>">
                                 <input type="checkbox" name="horario[]" value="<?= $horario ?>" <?= $disabled ?>> <?= $horario ?>

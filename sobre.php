@@ -31,13 +31,13 @@ require_once './inc/testebd.inc.php';
         h1 {
             position: center;
             font-size: 2.5em;
-            color: rgb(23, 65, 18);
+            color:rgb(8, 37, 75);
             margin: 20px 0;
         }
 
         .texto {
             font-size: 1.4rem;
-            color: rgb(13, 54, 9);
+            color: rgb(8, 37, 75);
             margin-bottom: 20px;
             text-align: justify;
         }
@@ -53,7 +53,7 @@ require_once './inc/testebd.inc.php';
         .perfil {
             text-align: center;
             width: calc(33.33% - 20px);
-            background-color: rgba(15, 80, 9, 0.33);
+            background-color:rgb(199, 213, 214);
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgb(0, 0, 0, 0.1);
@@ -64,7 +64,7 @@ require_once './inc/testebd.inc.php';
         .perfil p {
             margin: 10px 0;
             font-size: 1.3em;
-            color: rgba(8, 36, 5, 0.86);
+            color:rgb(8, 37, 75);
         }
 
         .imagem {
@@ -72,12 +72,12 @@ require_once './inc/testebd.inc.php';
             height: 180px;
             object-fit: cover;
             margin-bottom: 15px;
-            border: 4px solid rgb(37, 102, 29);
+            border: 4px solid rgb(20, 76, 87);
             position: static;
         }
 
         .perfil:hover {
-            background-color: rgba(11, 146, 15, 0.25);
+            background-color:rgb(167, 203, 212);
 
         }
     </style>

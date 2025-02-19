@@ -37,7 +37,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == 0) {
         }
 
         h2 {
-            color: #265a29;
+            color: #0c3468;
             margin-bottom: 20px;
         }
 
@@ -49,7 +49,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == 0) {
 
         .menu-buttons a {
             display: block;
-            background-color: #2b8b30;
+            background-color:#1796b3;
             color: white;
             padding: 10px;
             border-radius: 5px;
@@ -59,7 +59,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == 0) {
         }
 
         .menu-buttons a:hover {
-            background-color: #44ac50;
+            background-color: #1f788c;
             transform: scale(1.05);
         }
     </style>

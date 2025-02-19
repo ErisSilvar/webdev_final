@@ -71,8 +71,8 @@ $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
         }
 
         .card:hover {
-            background-color: rgba(199, 223, 207, 0.8);
-            box-shadow: 0px 5px 15px rgba(27, 228, 9, 0.3);
+            background-color: rgb(167, 203, 212);
+            box-shadow: 0px 5px 15px rgb(61, 122, 128);
         }
 
         .card img {
@@ -85,7 +85,7 @@ $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
         .card h3 {
             margin: 10px 0 5px;
             font-size: 1rem;
-            color: #2e7d32;
+            color: #0c3468;
         }
 
         .card p {
@@ -94,7 +94,7 @@ $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
         }
 
         .reservar_btn {
-            background-color: #2e7d32;
+            background-color: #1796b3;
             color: white;
             font-size: 1rem;
             padding: 10px 20px;
@@ -105,7 +105,7 @@ $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
         }
 
         .reservar_btn:hover {
-            background-color: #388e3c;
+            background-color: #1f788c;
             transform: scale(1.05);
         }
     </style>
@@ -144,9 +144,10 @@ $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
                                 alt="Imagem da Sala">
                             <h3><?= htmlspecialchars($sala->nome) ?></h3>
                             <p><?= htmlspecialchars($sala->descricao) ?></p>
-                            <a href="reservar.php?usuario_id=<?= $usuario_email ?>&ambiente=<?= urlencode($sala->id) ?>">
-                                <button class="reservar_btn">Reservar</button>
-                            </a>
+                            <button class="reservar_btn" onclick="location.href='reservar.php?usuario_id=<?= $usuario_email ?>&ambiente=<?= urlencode($sala->id) ?>'">
+                                Reservar
+                            </button>
+
                         </div>
                     <?php endforeach; ?>
                 </div>
