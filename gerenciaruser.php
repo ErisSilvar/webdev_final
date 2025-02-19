@@ -16,7 +16,7 @@ $usuarios = R::find('usuario', 'id != ? AND email != ?', [1, $usuarioLogado]);
 
 ?>
 <!DOCTYPE html>
-<html lang="pt-BR"> 
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -24,6 +24,7 @@ $usuarios = R::find('usuario', 'id != ? AND email != ?', [1, $usuarioLogado]);
     <title>Deletar usuários</title>
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/notificacao.css">
+    <script src="https://kit.fontawesome.com/36842ecef1.js" crossorigin="anonymous"></script>
     <style>
         main {
             display: flex;
@@ -165,7 +166,9 @@ $usuarios = R::find('usuario', 'id != ? AND email != ?', [1, $usuarioLogado]);
                                 <td><?php echo $usuario->admin == 1 ? 'Administrador' : 'Usuário Comum'; ?></td>
                                 <td>
                                     <button type="submit" name="excluir_id" value="<?php echo $usuario->id; ?>"
-                                        class="btn-excluir">Excluir</button>
+                                        class="btn-excluir">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

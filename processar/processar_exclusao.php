@@ -25,5 +25,5 @@ if (isset($_POST['excluir_id'])) {
     $_SESSION['mensagem'] = ['texto' => 'ID de exclusão não fornecido.', 'tipo' => 'erro'];
 }
 
-header('Location: ../deletaruser.php');
+header('Location: ../gerenciaruser.php');
 exit();
