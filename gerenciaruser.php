@@ -97,6 +97,20 @@ $usuarios = R::find('usuario', 'id != ? AND email != ?', [1, $usuarioLogado]);
             background-color: #c62828;
         }
 
+        .btn-editar {
+            background-color: rgb(25, 86, 219);
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-editar:hover {
+            background-color: rgb(27, 68, 158);
+        }
+
 
         @media screen and (max-width: 768px) {
             .container {
@@ -169,7 +183,11 @@ $usuarios = R::find('usuario', 'id != ? AND email != ?', [1, $usuarioLogado]);
                                         class="btn-excluir">
                                         <i class="fa-regular fa-trash-can"></i>
                                     </button>
+                                    <a href="editar_usuario.php?id=<?php echo $usuario->id; ?>" class="btn-editar">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </a>
                                 </td>
+
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
