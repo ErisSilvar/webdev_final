@@ -77,7 +77,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == 0) {
                 <a href="cadastraruser.php">Cadastrar usuários</a>
                 <a href="gerenciaruser.php">Gerenciar usuários</a>
                 <a href="cadastrarambiente.php">Cadastrar ambientes</a>
-                <a href="deletarambiente.php">Deletar ambientes</a>
+                <a href="gerenciarambiente.php">Gerenciar ambientes</a>
             </div>
         </div>
     </main>
