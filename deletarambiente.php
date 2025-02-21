@@ -17,9 +17,10 @@ $ambientes = R::findAll('ambiente');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deletar Ambientes</title>
+    <title>Gerenciar Ambientes</title>
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/notificacao.css">
+    <script src="https://kit.fontawesome.com/36842ecef1.js" crossorigin="anonymous"></script>
     <style>
         main {
             display: flex;
@@ -96,6 +97,21 @@ $ambientes = R::findAll('ambiente');
             background-color: #c62828;
         }
 
+        .btn-editar {
+            background-color: rgb(25, 86, 219);
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-editar:hover {
+            background-color: rgb(27, 68, 158);
+        }
+
+
 
         @media screen and (max-width: 768px) {
             .container {
@@ -163,7 +179,12 @@ $ambientes = R::findAll('ambiente');
                                         alt="Imagem do Ambiente"></td>
                                 <td>
                                     <button type="submit" name="excluir_id" value="<?php echo $ambiente->id; ?>"
-                                        class="btn-excluir">Excluir</button>
+                                        class="btn-excluir">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+                                    <a href="editar_usuario.php?id=<?php echo $ambiente->id; ?>" class="btn-editar">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
