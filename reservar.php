@@ -23,6 +23,7 @@ $diassemana = date('w', strtotime($data));
 $mesNome = strftime('%B', strtotime($data));
 
 
+
 $horarios_disponiveis = [];
 for ($h = 8; $h <= 18; $h++) {
     $horarios_disponiveis[] = sprintf('%02d:00', $h);

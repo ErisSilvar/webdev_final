@@ -31,6 +31,8 @@ foreach ($reservas as $reserva) {
     <title>Minhas reservas</title>
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/notificacao.css">
+    <script src="https://kit.fontawesome.com/36842ecef1.js" crossorigin="anonymous"></script>
+
     <style>
         .container {
             padding: 20px;
@@ -103,22 +105,50 @@ foreach ($reservas as $reserva) {
             color: #555;
         }
 
-        .reserva_btn {
-            background-color: rgb(237, 13, 13);
-            color: white;
-            font-size: 1rem;
-            padding: 10px 20px;
+        .btn-excluir,
+        .btn-editar {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            text-align: center;
             transition: background-color 0.3s ease, transform 0.3s ease;
+            width: 30px;
+            height: 30px;
+            box-sizing: border-box;
         }
 
-        .reserva_btn:hover {
-            background-color: rgb(142, 56, 56);
-            transform: scale(1.05);
+        .btn-excluir {
+            background-color: #e53935;
+            color: white;
         }
-        
+
+        .btn-excluir:hover {
+            background-color: #c62828;
+        }
+
+        .btn-editar {
+            background-color: rgb(25, 86, 219);
+            color: white;
+        }
+
+        .btn-editar:hover {
+            background-color: rgb(27, 68, 158);
+        }
+
+        .btn-excluir i,
+        .btn-editar i {
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-excluir:hover i,
+        .btn-editar:hover i {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 
@@ -143,7 +173,7 @@ foreach ($reservas as $reserva) {
                 <div class="card-container">
                     <?php foreach ($salas_reservadas as $reserva):
                         $ambiente = R::load('ambiente', $reserva->ambiente_id);
-                        ?>
+                    ?>
                         <div class="card">
                             <img src="./processar/uploads/ambientes/<?= htmlspecialchars($ambiente->imagem) ?>"
                                 alt="Imagem da Sala">
@@ -151,8 +181,8 @@ foreach ($reservas as $reserva) {
                             <p><b>Data: <?= (new DateTime($reserva->data_reserva))->format('d/m/Y') ?></b></p>
                             <p><b>Horário: <?= htmlspecialchars($reserva->horario) ?></b></p>
                             <a
-                                href="./processar/cancelar_reserva.php?usuario_email=<?= $usuario_email ?>&reserva=<?= urlencode($reserva->id) ?>">
-                                <button class="reserva_btn">Cancelar reserva</button>
+                                class="btn-excluir" href="./processar/cancelar_reserva.php?usuario_email=<?= $usuario_email ?>&reserva=<?= urlencode($reserva->id) ?>">
+                                <i class="fa-regular fa-trash-can"></i>
                             </a>
                         </div>
                     <?php endforeach; ?>
@@ -166,7 +196,7 @@ foreach ($reservas as $reserva) {
                 <div class="card-container">
                     <?php foreach ($laboratorios_reservados as $reserva):
                         $ambiente = R::load('ambiente', $reserva->ambiente_id);
-                        ?>
+                    ?>
                         <div class="card">
                             <img src="./processar/uploads/ambientes/<?= htmlspecialchars($ambiente->imagem) ?>"
                                 alt="Imagem do Laboratório">
@@ -174,9 +204,11 @@ foreach ($reservas as $reserva) {
                             <p><b>Data: <?= (new DateTime($reserva->data_reserva))->format('d/m/Y') ?></b></p>
                             <p><b>Horário: <?= htmlspecialchars($reserva->horario) ?></b></p>
                             <a
-                                href="./processar/cancelar_reserva.php?usuario_email=<?= $usuario_email ?>&reserva=<?= urlencode($reserva->id) ?>">
-                                <button class="reserva_btn">Cancelar reserva</button>
+                                class="btn-excluir" href="./processar/cancelar_reserva.php?usuario_email=<?= $usuario_email ?>&reserva=<?= urlencode($reserva->id) ?>">
+                                <i class="fa-regular fa-trash-can"></i>
                             </a>
+
+
                         </div>
                     <?php endforeach; ?>
                 </div>
