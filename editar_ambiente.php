@@ -4,35 +4,34 @@ require_once './inc/conexaobd.inc.php';
 include_once './inc/entradausuario.inc.php';
 require_once './inc/testebd.inc.php';
 
-if (!isset($_SESSION['admin']) || $_SESSION['admin'] != 1) {
+if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
     header('location: index.php');
     exit();
 }
 
 if (!isset($_GET['id']) || empty($_GET['id'])) {
-    $_SESSION['mensagem'] = ['tipo' => 'erro', 'texto' => 'Usuário não encontrado.'];
-    header('location: gerenciaruser.php');
+    $_SESSION['mensagem'] = ['tipo' => 'erro', 'texto' => 'Ambiente não encontrado.'];
+    header('location: gerenciarambiente.php');
     exit();
 }
 
-$id_usuario = $_GET['id'];
+$id_ambiente = $_GET['id'];
 
-$usuario = R::load('usuario', $id_usuario);
+$ambiente = R::load('ambiente', $id_ambiente);
 
-if (!$usuario->id) {
-    $_SESSION['mensagem'] = ['tipo' => 'erro', 'texto' => 'Usuário não encontrado.'];
-    header('location: gerenciaruser.php');
+if (!$ambiente->id) {
+    $_SESSION['mensagem'] = ['tipo' => 'erro', 'texto' => 'Ambiente não encontrado.'];
+    header('location: gerenciarambiente.php');
     exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Usuário</title>
+    <title>Editar Ambiente</title>
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/notificacao.css">
     <style>
@@ -51,7 +50,7 @@ if (!$usuario->id) {
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            max-width: 400px;
+            max-width: 460px;
             width: 90%;
         }
 
@@ -60,7 +59,7 @@ if (!$usuario->id) {
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-align: left;
         }
 
@@ -71,30 +70,25 @@ if (!$usuario->id) {
         }
 
         .form-group input {
-            width: 96%;
+            width: 95%;
+        }
+
+        .form-group select {
+            width: 100%;
+        }
+
+        .form-group input,
+        .form-group select {
             padding: 10px;
             border: 1px solid #1f788c;
             border-radius: 5px;
             font-size: 1rem;
         }
 
-        .form-group .check-admin {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-        }
-
-        .form-group .check-admin label {
-            font-weight: normal;
-            color: #1f788c;
-            cursor: pointer;
-            margin-left: 0;
-            margin-right: 90%;
-        }
 
         .btn-submit {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: #1f788c;
             color: white;
             border: none;
@@ -105,7 +99,7 @@ if (!$usuario->id) {
         }
 
         .btn-submit:hover {
-            background-color: rgb(25, 89, 104);
+            background-color: #1f788c;
         }
     </style>
 </head>
@@ -114,7 +108,6 @@ if (!$usuario->id) {
     <header>
         <?php include_once('./inc/cabecalho.inc.php'); ?>
     </header>
-
     <main>
         <?php
         if (isset($_SESSION['mensagem'])) {
@@ -124,39 +117,40 @@ if (!$usuario->id) {
         }
         ?>
         <div class="container">
-            <h2>Editar Usuário</h2>
-            <form action="./processar/processareditar_user.php" method="POST">
-                <input type="hidden" name="id" value="<?php echo $usuario->id; ?>">
+            <h2>Editar Ambiente</h2>
+            <form action="./processar/processar_editarambiente.php" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="<?php echo $ambiente->id; ?>">
+
+                <div class="form-group">
+                    <label for="tipo">Tipo de Ambiente:</label>
+                    <select id="tipo" name="tipo" required>
+                        <option value="sala" <?php echo ($ambiente->tipo == 'sala') ? 'selected' : ''; ?>>Sala</option>
+                        <option value="laboratorio" <?php echo ($ambiente->tipo == 'laboratorio') ? 'selected' : ''; ?>>
+                            Laboratório</option>
+                    </select>
+                </div>
 
                 <div class="form-group">
                     <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($usuario->nome); ?>"
+                    <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($ambiente->nome); ?>"
                         required>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($usuario->email); ?>"
-                        required>
+                    <label for="descricao">Descrição:</label>
+                    <input type="text" id="descricao" name="descricao"
+                        value="<?php echo htmlspecialchars($ambiente->descricao); ?>" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="senha">Nova Senha (deixe em branco para manter a atual):</label>
-                    <input type="password" id="senha" name="senha">
-                </div>
-
-                <div class="form-group">
-                    <div class="check-admin">
-                        <input type="checkbox" id="admin" name="admin" value="1" <?php echo $usuario->admin ? 'checked' : ''; ?>>
-                        <label for="admin"><b>Administrador</b></label>
-                    </div>
+                    <label for="arquivo">Nova Imagem (Apenas formatos JPG, JPEG, PNG, e GIF):</label>
+                    <input type="file" id="arquivo" name="arquivo">
                 </div>
 
                 <button type="submit" class="btn-submit">Salvar Alterações</button>
             </form>
         </div>
     </main>
-
     <footer>
         <?php include_once('./inc/rodape.inc.php'); ?>
     </footer>

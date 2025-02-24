@@ -21,7 +21,7 @@ $usuarios = R::find('usuario', 'id != ? AND email != ?', [1, $usuarioLogado]);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deletar usuários</title>
+    <title>Gerenciar usuários</title>
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/notificacao.css">
     <script src="https://kit.fontawesome.com/36842ecef1.js" crossorigin="anonymous"></script>
@@ -50,7 +50,7 @@ $usuarios = R::find('usuario', 'id != ? AND email != ?', [1, $usuarioLogado]);
         }
 
         .container h2 {
-            color: #2e7d32;
+            color: #0c3468;
         }
 
 
@@ -79,18 +79,29 @@ $usuarios = R::find('usuario', 'id != ? AND email != ?', [1, $usuarioLogado]);
         }
 
         table th {
-            background-color: #2e7d32;
+            background-color: #1f788c;
             color: white;
+        }
+
+        .btn-excluir,
+        .btn-editar {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            width: 30px;
+            height: 30px;
+            box-sizing: border-box;
         }
 
         .btn-excluir {
             background-color: #e53935;
             color: white;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
         }
 
         .btn-excluir:hover {
@@ -100,17 +111,22 @@ $usuarios = R::find('usuario', 'id != ? AND email != ?', [1, $usuarioLogado]);
         .btn-editar {
             background-color: rgb(25, 86, 219);
             color: white;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
         }
 
         .btn-editar:hover {
             background-color: rgb(27, 68, 158);
         }
 
+        .btn-excluir i,
+        .btn-editar i {
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-excluir:hover i,
+        .btn-editar:hover i {
+            transform: scale(1.1);
+        }
 
         @media screen and (max-width: 768px) {
             .container {
@@ -168,7 +184,7 @@ $usuarios = R::find('usuario', 'id != ? AND email != ?', [1, $usuarioLogado]);
                             <th>Nome</th>
                             <th>Email</th>
                             <th>Tipo</th>
-                            <th>Ação</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>

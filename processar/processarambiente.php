@@ -23,9 +23,6 @@ if (isset($_POST['tipo']) && isset($_POST['nome']) && isset($_POST['descricao'])
         exit();
     }
 
-
-
-
     try {
         if ($arquivo['error'] !== UPLOAD_ERR_OK) {
             throw new Exception('Erro no upload do arquivo.');

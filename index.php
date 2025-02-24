@@ -4,7 +4,7 @@ require_once './class/rb.php';
 require_once './inc/conexaobd.inc.php';
 require_once './inc/testebd.inc.php';
 
-$usuario_email = $_SESSION['email'];
+$usuario_id = isset($_POST['usuario']);
 $salas = R::findAll('ambiente', 'tipo = ?', ['sala']);
 $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
 
@@ -45,7 +45,7 @@ $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
             text-align: center;
             padding: 15px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: background-color 0.4s ease, box-shadow 0.4s ease;
         }
 
 
@@ -71,8 +71,8 @@ $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
         }
 
         .card:hover {
-            background-color: rgb(167, 203, 212);
-            box-shadow: 0px 5px 15px rgb(61, 122, 128);
+            background-color: rgba(167, 203, 212, 0.32);
+            box-shadow: 0px 5px 15px rgba(61, 122, 128, 0.7);
         }
 
         .card img {
@@ -105,8 +105,7 @@ $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
         }
 
         .reservar_btn:hover {
-            background-color: #1f788c;
-            transform: scale(1.05);
+            background-color: rgb(27, 126, 148);
         }
     </style>
 </head>
@@ -131,7 +130,14 @@ $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
             <?php unset($_SESSION['msg_visitanteNegado']); ?>
         <?php endif; ?>
 
+        <?php
 
+        if (isset($_SESSION['mensagem'])) {
+            $mensagem = $_SESSION['mensagem'];
+            echo "<div class='notificacao {$mensagem['tipo']}'>{$mensagem['texto']}</div>";
+            unset($_SESSION['mensagem']);
+        }
+        ?>
 
         <div class="container">
             <h1>Reserva de Ambiente</h1>
@@ -144,7 +150,8 @@ $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
                                 alt="Imagem da Sala">
                             <h3><?= htmlspecialchars($sala->nome) ?></h3>
                             <p><?= htmlspecialchars($sala->descricao) ?></p>
-                            <button class="reservar_btn" onclick="location.href='reservar.php?usuario_id=<?= $usuario_email ?>&ambiente=<?= urlencode($sala->id) ?>'">
+                            <button class="reservar_btn"
+                                onclick="location.href='reservar.php?usuario_id=<?= $usuario_id ?>&ambiente=<?= urlencode($sala->id) ?>'">
                                 Reservar
                             </button>
 
@@ -164,16 +171,17 @@ $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
                                 alt="Imagem do Laboratório">
                             <h3><?= htmlspecialchars($laboratorio->nome) ?></h3>
                             <p><?= htmlspecialchars($laboratorio->descricao) ?></p>
-                            <a href="reservar.php?usuario_id=<?= $usuario_email ?>&ambiente=<?= urlencode($laboratorio->id) ?>">
-                                <button class="reservar_btn">Reservar</button>
-                            </a>
+                            <button class="reservar_btn"
+                                onclick="location.href='reservar.php?usuario_id=<?= $usuario_id ?>&ambiente=<?= urlencode($laboratorio->id) ?>'">
+                                Reservar
+                            </button>
                         </div>
                     <?php endforeach; ?>
                 </div>
             <?php else: ?>
                 <p class="mensagem-central">Nenhum laboratório encontrado.</p>
             <?php endif; ?>
-        </div>
+        </div> 
     </main>
     <footer>
         <?php include_once './inc/rodape.inc.php'; ?>

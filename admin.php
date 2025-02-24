@@ -49,7 +49,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == 0) {
 
         .menu-buttons a {
             display: block;
-            background-color:#1796b3;
+            background-color: #1796b3;
             color: white;
             padding: 10px;
             border-radius: 5px;

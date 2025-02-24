@@ -38,5 +38,9 @@ if (!$tabelaExiste || !$temAdmin) {
     }
     header('Location: ./index.php');
     exit;
+} else {
+    header('Location: ./index.php');
+    exit;
+ 
 }
 ?>

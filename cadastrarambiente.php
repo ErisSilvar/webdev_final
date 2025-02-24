@@ -41,7 +41,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
         }
 
         .container h2 {
-            color: #2e7d32;
+            color: #0c3468;
         }
 
         .form-group {
@@ -52,14 +52,14 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
         .form-group label {
             display: block;
             font-weight: bold;
-            color: #2e7d32;
+            color: #1f788c;
         }
 
         .form-group input,
         .form-group select {
             width: 95%;
             padding: 10px;
-            border: 1px solid #66bb6a;
+            border: 1px solid #1f788c;
             border-radius: 5px;
             font-size: 1rem;
         }
@@ -67,7 +67,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
         .form-group select {
             width: 100%;
             padding: 10px;
-            border: 1px solid #66bb6a;
+            border: 1px solid #1f788c;
             border-radius: 5px;
             font-size: 1rem;
         }
@@ -75,7 +75,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
         .btn-submit {
             width: 100%;
             padding: 12px;
-            background-color: #2e7d32;
+            background-color: #1f788c;
             color: white;
             border: none;
             border-radius: 5px;
@@ -85,7 +85,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
         }
 
         .btn-submit:hover {
-            background-color: #1b5e20;
+            background-color: rgb(25, 89, 104);
         }
     </style>
 

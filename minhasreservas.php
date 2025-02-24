@@ -56,7 +56,7 @@ foreach ($reservas as $reserva) {
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
             text-align: center;
             padding: 15px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: background-color 0.4s ease, box-shadow 0.4s ease;
         }
 
         @media (max-width: 900px) {
@@ -81,8 +81,8 @@ foreach ($reservas as $reserva) {
         }
 
         .card:hover {
-            background-color: rgba(199, 223, 207, 0.8);
-            box-shadow: 0px 5px 15px rgba(27, 228, 9, 0.3);
+            background-color: rgba(167, 203, 212, 0.32);
+            box-shadow: 0px 5px 15px rgba(61, 122, 128, 0.7);
         }
 
         .card img {
@@ -95,7 +95,7 @@ foreach ($reservas as $reserva) {
         .card h3 {
             margin: 10px 0 5px;
             font-size: 1rem;
-            color: #2e7d32;
+            color: #0c3468;
         }
 
         .card p {
@@ -103,7 +103,7 @@ foreach ($reservas as $reserva) {
             color: #555;
         }
 
-        .reservar_btn {
+        .reserva_btn {
             background-color: rgb(237, 13, 13);
             color: white;
             font-size: 1rem;
@@ -114,10 +114,11 @@ foreach ($reservas as $reserva) {
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
-        .reservar_btn:hover {
+        .reserva_btn:hover {
             background-color: rgb(142, 56, 56);
             transform: scale(1.05);
         }
+        
     </style>
 </head>
 
@@ -147,11 +148,11 @@ foreach ($reservas as $reserva) {
                             <img src="./processar/uploads/ambientes/<?= htmlspecialchars($ambiente->imagem) ?>"
                                 alt="Imagem da Sala">
                             <h3><?= htmlspecialchars($ambiente->nome) ?></h3>
-                            <p>Data: <?= (new DateTime($reserva->data_reserva))->format('d/m/Y') ?></p>
-                            <p>Horário: <?= htmlspecialchars($reserva->horario) ?></p>
+                            <p><b>Data: <?= (new DateTime($reserva->data_reserva))->format('d/m/Y') ?></b></p>
+                            <p><b>Horário: <?= htmlspecialchars($reserva->horario) ?></b></p>
                             <a
                                 href="./processar/cancelar_reserva.php?usuario_email=<?= $usuario_email ?>&reserva=<?= urlencode($reserva->id) ?>">
-                                <button class="reservar_btn">Cancelar reserva</button>
+                                <button class="reserva_btn">Cancelar reserva</button>
                             </a>
                         </div>
                     <?php endforeach; ?>
@@ -170,11 +171,11 @@ foreach ($reservas as $reserva) {
                             <img src="./processar/uploads/ambientes/<?= htmlspecialchars($ambiente->imagem) ?>"
                                 alt="Imagem do Laboratório">
                             <h3><?= htmlspecialchars($ambiente->nome) ?></h3>
-                            <p>Data: <?= (new DateTime($reserva->data_reserva))->format('d/m/Y') ?></p>
-                            <p>Horário: <?= htmlspecialchars($reserva->horario) ?></p>
+                            <p><b>Data: <?= (new DateTime($reserva->data_reserva))->format('d/m/Y') ?></b></p>
+                            <p><b>Horário: <?= htmlspecialchars($reserva->horario) ?></b></p>
                             <a
                                 href="./processar/cancelar_reserva.php?usuario_email=<?= $usuario_email ?>&reserva=<?= urlencode($reserva->id) ?>">
-                                <button class="reservar_btn">Cancelar reserva</button>
+                                <button class="reserva_btn">Cancelar reserva</button>
                             </a>
                         </div>
                     <?php endforeach; ?>

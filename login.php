@@ -52,7 +52,7 @@ if (isset($_POST['visitante'])) {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: url("./imgs/if.jpg") no-repeat center center/cover;
+            background: url("./imgs/ifnmg_fundo.jpg") no-repeat center center/cover;
             margin: 0;
             display: flex;
             justify-content: center;
@@ -66,11 +66,11 @@ if (isset($_POST['visitante'])) {
             background-color: white;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 25%;
             margin-top: 50px;
             text-align: center;
+            box-shadow: 0px 5px 15px rgba(61, 122, 128, 0.81);
         }
 
         .container h1 {
@@ -111,7 +111,7 @@ if (isset($_POST['visitante'])) {
 
         .btn-submit:hover {
             background-color: #1f788c;
-            color: #021859;
+            color: rgba(247, 247, 247, 0.77);
         }
     </style>
 </head>

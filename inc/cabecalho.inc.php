@@ -1,5 +1,5 @@
 <nav class="nav">
-    <img src="./imgs/if_icone.png" alt="Logo do if" class="logo" width="40" height="40">
+    <img src="./imgs/if_icone.png" alt="Logo do IF" class="logo" width="40" height="40">
     <?= $linkHome ?>
     <?= $linkSobre ?>
     <?= $linkAdmin ?>

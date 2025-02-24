@@ -32,7 +32,6 @@ $ambientes = R::findAll('ambiente');
             padding: 20px;
         }
 
-
         .container {
             background: white;
             padding: 30px;
@@ -47,7 +46,7 @@ $ambientes = R::findAll('ambiente');
         }
 
         .container h2 {
-            color: #2e7d32;
+            color: #0c3468;
         }
 
 
@@ -73,7 +72,7 @@ $ambientes = R::findAll('ambiente');
         }
 
         table th {
-            background-color: #2e7d32;
+            background-color: #1f788c;
             color: white;
         }
 
@@ -83,14 +82,25 @@ $ambientes = R::findAll('ambiente');
             border-radius: 5px;
         }
 
-        .btn-excluir {
-            background-color: #e53935;
-            color: white;
+        .btn-excluir,
+        .btn-editar {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
             padding: 5px 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            width: 30px;
+            height: 30px;
+            box-sizing: border-box;
+        }
+
+        .btn-excluir {
+            background-color: #e53935;
+            color: white;
         }
 
         .btn-excluir:hover {
@@ -100,15 +110,21 @@ $ambientes = R::findAll('ambiente');
         .btn-editar {
             background-color: rgb(25, 86, 219);
             color: white;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
         }
 
         .btn-editar:hover {
             background-color: rgb(27, 68, 158);
+        }
+
+        .btn-excluir i,
+        .btn-editar i {
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-excluir:hover i,
+        .btn-editar:hover i {
+            transform: scale(1.1);
         }
 
 
@@ -165,8 +181,9 @@ $ambientes = R::findAll('ambiente');
                             <th>ID</th>
                             <th>Tipo</th>
                             <th>Nome</th>
+                            <th>Descrição</th>
                             <th>Imagem</th>
-                            <th>Ação</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -175,6 +192,7 @@ $ambientes = R::findAll('ambiente');
                                 <td><?php echo $ambiente->id; ?></td>
                                 <td><?php echo $ambiente->tipo; ?></td>
                                 <td><?php echo $ambiente->nome; ?></td>
+                                <td><?php echo $ambiente->descricao; ?></td>
                                 <td><img src="./processar/uploads/ambientes/<?= htmlspecialchars($ambiente->imagem) ?>"
                                         alt="Imagem do Ambiente"></td>
                                 <td>
@@ -182,7 +200,7 @@ $ambientes = R::findAll('ambiente');
                                         class="btn-excluir">
                                         <i class="fa-regular fa-trash-can"></i>
                                     </button>
-                                    <a href="editar_usuario.php?id=<?php echo $ambiente->id; ?>" class="btn-editar">
+                                    <a href="editar_ambiente.php?id=<?php echo $ambiente->id; ?>" class="btn-editar">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </a>
                                 </td>

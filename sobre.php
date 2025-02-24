@@ -11,7 +11,7 @@ require_once './inc/testebd.inc.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre</title>
+    <title>Sobre a equipe</title>
     <link rel="stylesheet" href="./style/style.css">
 
     <style>
@@ -31,7 +31,7 @@ require_once './inc/testebd.inc.php';
         h1 {
             position: center;
             font-size: 2.5em;
-            color:rgb(8, 37, 75);
+            color: rgb(8, 37, 75);
             margin: 20px 0;
         }
 
@@ -53,7 +53,7 @@ require_once './inc/testebd.inc.php';
         .perfil {
             text-align: center;
             width: calc(33.33% - 20px);
-            background-color:rgb(199, 213, 214);
+            background-color: rgb(199, 213, 214);
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgb(0, 0, 0, 0.1);
@@ -64,7 +64,7 @@ require_once './inc/testebd.inc.php';
         .perfil p {
             margin: 10px 0;
             font-size: 1.3em;
-            color:rgb(8, 37, 75);
+            color: rgb(8, 37, 75);
         }
 
         .imagem {
@@ -77,7 +77,7 @@ require_once './inc/testebd.inc.php';
         }
 
         .perfil:hover {
-            background-color:rgb(167, 203, 212);
+            background-color: rgb(167, 203, 212);
 
         }
     </style>

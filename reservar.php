@@ -7,7 +7,15 @@ require_once './inc/verificar_acesso.inc.php';
 
 setlocale(LC_TIME, 'pt_BR.utf8', 'pt_BR', 'portuguese');
 
-$usuario_id = isset($_SESSION['email']) ? $_SESSION['email'] : null;
+$ambiente_id = isset($_GET['ambiente']) ? $_GET['ambiente'] : null;
+
+if (!$ambiente_id) {
+    $_SESSION['mensagem'] = ['tipo' => 'erro', 'texto' => 'Parâmetros inválidos!'];
+    header('Location: index.php');
+    exit();
+}
+
+$usuario_email = isset($_SESSION['email']) ? $_SESSION['email'] : null;
 $ambiente_id = isset($_GET['ambiente']) ? $_GET['ambiente'] : null;
 $data = isset($_GET['mes']) ? $_GET['mes'] : date('Y-m');
 $diasmes = date('t', strtotime($data));
@@ -20,7 +28,6 @@ for ($h = 8; $h <= 18; $h++) {
     $horarios_disponiveis[] = sprintf('%02d:00', $h);
 }
 
-
 $dia_selecionado = isset($_GET['dia']) ? (int) $_GET['dia'] : null;
 $horarios_ocupados = [];
 if ($dia_selecionado) {
@@ -30,6 +37,15 @@ if ($dia_selecionado) {
         [$data_selecionada, $ambiente_id]
     );
 }
+
+$reservas = R::find('reservas', 'data_reserva = ? AND ambiente_id = ?', [$data_selecionada, $ambiente_id]);
+
+$horarios_ocupados = [];
+foreach ($reservas as $reserva) {
+    $usuario = R::findOne('usuario', 'email = ?', [$reserva->usuario_email]);
+    $horarios_ocupados[$reserva->horario] = $usuario->nome;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -115,7 +131,7 @@ if ($dia_selecionado) {
         }
 
         th {
-            background-color:rgb(132, 164, 172);
+            background-color: rgb(132, 164, 172);
             font-weight: bold;
             text-transform: uppercase;
         }
@@ -137,8 +153,10 @@ if ($dia_selecionado) {
         td a {
             color: rgba(66, 54, 54, 0.88);
         }
+
         td a:hover {
-            background-color: rgb(167, 203, 212);;
+            background-color: rgb(167, 203, 212);
+            ;
 
             color: black;
             transform: scale(1.1);
@@ -203,7 +221,7 @@ if ($dia_selecionado) {
         }
 
         button:hover {
-            background-color:  #1f788c;
+            background-color: #1f788c;
         }
 
         @media (max-width: 768px) {
@@ -261,10 +279,11 @@ if ($dia_selecionado) {
                         echo "<td></td>";
                     }
 
+
                     for ($dia = 1; $dia <= $diasmes; $dia++) {
                         $data_atual = sprintf('%04d-%02d-%02d', date('Y', strtotime($data)), date('m', strtotime($data)), $dia);
 
-                        if ($usuario_id) {
+                        if ($usuario_email) {
                             if ($data_atual >= $hoje) {
                                 echo "<td><a href='?dia=$dia&mes=$data&ambiente=$ambiente_id'>$dia</a></td>";
                             } else {
@@ -294,33 +313,30 @@ if ($dia_selecionado) {
                         <?php
                         $hoje = date('Y-m-d');
                         $hora_atual = date('H:i');
-
+                        $hora_comparacao = sprintf('%02d:%02d', date('H'), 0);
                         foreach ($horarios_disponiveis as $horario):
-                            $hora_comparacao = sprintf('%02d:00', (int) substr($horario, 0, 2)); // Formato correto
-
-
-                            $ocupado = in_array($horario, $horarios_ocupados);
-                            $passado = ($data_selecionada == $hoje) && ($hora_comparacao < $hora_atual);
-
+                            $ocupado = isset($horarios_ocupados[$horario]);
+                            $nome_usuario = $ocupado ? $horarios_ocupados[$horario] : '';
+                            $passado = ($data_selecionada == $hoje) && ($horario < $hora_atual);
 
                             $disabled = ($ocupado || $passado) ? "disabled" : "";
-
                             $style = "";
                             $mensagem = "";
                             if ($ocupado) {
                                 $style = "background-color: red; color: white;";
-                                $mensagem = "<br><small>Já reservado</small>";
+                                $mensagem = "<br><small>Já reservado por $nome_usuario</small>";
                             } elseif ($passado) {
                                 $style = "background-color: grey; color: white;";
                                 $mensagem = "<br><small>Horário indisponível</small>";
                             }
-                        ?>
+                            ?>
                             <label
                                 style="display: inline-block; padding: 10px; border: 1px solid #ccc; cursor: pointer; <?= $style ?>">
                                 <input type="checkbox" name="horario[]" value="<?= $horario ?>" <?= $disabled ?>> <?= $horario ?>
                                 <?= $mensagem ?>
                             </label>
                         <?php endforeach; ?>
+
 
                     </div>
                     <br><button type="submit">Reservar</button>

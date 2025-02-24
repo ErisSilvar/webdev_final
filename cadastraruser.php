@@ -39,7 +39,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
         }
 
         .container h2 {
-            color: #2e7d32;
+            color: #0c3468;
         }
 
         .form-group {
@@ -50,13 +50,13 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
         .form-group label {
             display: block;
             font-weight: bold;
-            color: #2e7d32;
+            color: #1f788c;
         }
 
         .form-group input {
             width: 96%;
             padding: 10px;
-            border: 1px solid #66bb6a;
+            border: 1px solid #1f788c;
             border-radius: 5px;
             font-size: 1rem;
         }
@@ -69,7 +69,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
 
         .form-group .check-admin label {
             font-weight: normal;
-            color: #2e7d32;
+            color:  #1f788c;
             cursor: pointer;
             margin-left: 0;
             margin-right: 90%;
@@ -79,7 +79,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
         .btn-submit {
             width: 100%;
             padding: 10px;
-            background-color: #2e7d32;
+            background-color: #1f788c;
             color: white;
             border: none;
             border-radius: 5px;
@@ -89,7 +89,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
         }
 
         .btn-submit:hover {
-            background-color: #1b5e20;
+            background-color:rgb(25, 89, 104);
         }
     </style>
 
@@ -128,7 +128,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
                 <div class="form-group">
                     <div class="check-admin">
                         <input type="checkbox" id="admin" name="admin" value="1">
-                        <label for="admin">Administrador</label>
+                        <label for="admin"><b>Administrador</b></label>
                     </div>
                 </div>
                 <button type="submit" class="btn-submit">Cadastrar</button>
