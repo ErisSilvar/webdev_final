@@ -52,7 +52,7 @@ if (isset($_POST['visitante'])) {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: url("./imgs/ifnmg_fundo.jpg") no-repeat center center/cover;
+            background: url("./imgs/ifnmg.jpg") no-repeat center center/cover;
             margin: 0;
             display: flex;
             justify-content: center;

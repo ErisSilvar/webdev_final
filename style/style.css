@@ -8,14 +8,12 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color:#0c3468;
+    background-color: #0c3468;
     color: white;
     padding: 10px 20px;
     position: fixed;
     width: 100%;
     top: 0;
-
-
 }
 
 

@@ -181,7 +181,7 @@ $laboratorios = R::findAll('ambiente', 'tipo = ?', ['laboratorio']);
             <?php else: ?>
                 <p class="mensagem-central">Nenhum laboratório encontrado.</p>
             <?php endif; ?>
-        </div> 
+        </div>
     </main>
     <footer>
         <?php include_once './inc/rodape.inc.php'; ?>

@@ -69,7 +69,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
 
         .form-group .check-admin label {
             font-weight: normal;
-            color:  #1f788c;
+            color: #1f788c;
             cursor: pointer;
             margin-left: 0;
             margin-right: 90%;
@@ -89,7 +89,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != 1) {
         }
 
         .btn-submit:hover {
-            background-color:rgb(25, 89, 104);
+            background-color: rgb(25, 89, 104);
         }
     </style>
 

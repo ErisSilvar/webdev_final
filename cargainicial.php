@@ -41,6 +41,6 @@ if (!$tabelaExiste || !$temAdmin) {
 } else {
     header('Location: ./index.php');
     exit;
- 
+
 }
 ?>

@@ -1,6 +1,4 @@
 <?php
-
-
 if (isset($_SESSION['email']) && $_SESSION['email'] === "visitante@ifnmg.edu.br") {
 
     if (basename($_SERVER['PHP_SELF']) !== 'index.php') {

@@ -173,15 +173,15 @@ foreach ($reservas as $reserva) {
                 <div class="card-container">
                     <?php foreach ($salas_reservadas as $reserva):
                         $ambiente = R::load('ambiente', $reserva->ambiente_id);
-                    ?>
+                        ?>
                         <div class="card">
                             <img src="./processar/uploads/ambientes/<?= htmlspecialchars($ambiente->imagem) ?>"
                                 alt="Imagem da Sala">
                             <h3><?= htmlspecialchars($ambiente->nome) ?></h3>
                             <p><b>Data: <?= (new DateTime($reserva->data_reserva))->format('d/m/Y') ?></b></p>
                             <p><b>Horário: <?= htmlspecialchars($reserva->horario) ?></b></p>
-                            <a
-                                class="btn-excluir" href="./processar/cancelar_reserva.php?usuario_email=<?= $usuario_email ?>&reserva=<?= urlencode($reserva->id) ?>">
+                            <a class="btn-excluir"
+                                href="./processar/cancelar_reserva.php?usuario_email=<?= $usuario_email ?>&reserva=<?= urlencode($reserva->id) ?>">
                                 <i class="fa-regular fa-trash-can"></i>
                             </a>
                         </div>
@@ -196,15 +196,15 @@ foreach ($reservas as $reserva) {
                 <div class="card-container">
                     <?php foreach ($laboratorios_reservados as $reserva):
                         $ambiente = R::load('ambiente', $reserva->ambiente_id);
-                    ?>
+                        ?>
                         <div class="card">
                             <img src="./processar/uploads/ambientes/<?= htmlspecialchars($ambiente->imagem) ?>"
                                 alt="Imagem do Laboratório">
                             <h3><?= htmlspecialchars($ambiente->nome) ?></h3>
                             <p><b>Data: <?= (new DateTime($reserva->data_reserva))->format('d/m/Y') ?></b></p>
                             <p><b>Horário: <?= htmlspecialchars($reserva->horario) ?></b></p>
-                            <a
-                                class="btn-excluir" href="./processar/cancelar_reserva.php?usuario_email=<?= $usuario_email ?>&reserva=<?= urlencode($reserva->id) ?>">
+                            <a class="btn-excluir"
+                                href="./processar/cancelar_reserva.php?usuario_email=<?= $usuario_email ?>&reserva=<?= urlencode($reserva->id) ?>">
                                 <i class="fa-regular fa-trash-can"></i>
                             </a>
 

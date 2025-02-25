@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $senha = $_POST['senha'];
     $admin = isset($_POST['admin']) ? 1 : 0;
 
-    // Busca o usuário no banco
     $usuario = R::load('usuario', $id);
 
     if (!$usuario->id) {
@@ -24,8 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header('location: ../gerenciaruser.php');
         exit();
     }
-
-    // Atualiza os dados do usuário
     $usuario->nome = $nome;
     $usuario->email = $email;
     if (!empty($senha)) {
